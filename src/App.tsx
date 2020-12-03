@@ -2,11 +2,20 @@ import React from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import './App.css';
+import styled from 'styled-components';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
+import Paragraph from './view/l2/Paragraph';
+import { IconButton } from '@material-ui/core';
+import { Add } from '@material-ui/icons';
+
+const App = () => {
+    const Main = styled.div`
+        width: 70%;
+        margin-left: 10px;
+    `;
+    return (
+        <div className="App">
+            {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Counter />
         <p>
@@ -50,9 +59,17 @@ function App() {
             React Redux
           </a>
         </span>
-      </header>
-    </div>
-  );
+      </header> */}
+            <Main>
+                <Paragraph />
+                <Paragraph />
+                <Paragraph />
+                <IconButton >
+                    <Add />
+                </IconButton>
+            </Main>
+        </div>
+    );
 }
 
 export default App;
