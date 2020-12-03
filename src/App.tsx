@@ -1,12 +1,11 @@
 import React from 'react';
 import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
 import './App.css';
 import styled from 'styled-components';
-
-import Paragraph from './view/l2/Paragraph';
 import { IconButton } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
+
+import Paragraph from './view/l2/Paragraph';
 
 const App = () => {
     const Main = styled.div`
