@@ -8,11 +8,15 @@ import ScenarioAreaCount from '../l1/ScenarioAreaCount';
 import MemoArea from '../l1/MemoArea';
 
 
-const Root = styled.div``;
-    const Main = styled.div`
-        display: flex;
-    `;
-    const Footer = styled.div`
+const Root = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+`;
+const Main = styled.div`
+    display: flex;
+`;
+const Footer = styled.div`
     display: flex;
 `;
 
@@ -23,9 +27,8 @@ type Props = {
 
 const App = (props: Props) => {
     
-
     return (
-        <Root>
+        <Root className="paragraph">
             <Main>
                 <ScenarioArea id={props.id} />
                 <MemoArea id={props.id} />

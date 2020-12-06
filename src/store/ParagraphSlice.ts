@@ -6,7 +6,7 @@ export interface Paragraph {
     memo: string;
 }
 
-const initialParagraph = {
+const initialParagraph: Paragraph = {
     text: "",
     memo: "",
 }
