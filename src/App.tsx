@@ -1,70 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
 import { IconButton } from '@material-ui/core';
-import { Add } from '@material-ui/icons';
 
+import { RootState } from './store/rootReducer';
+
+import AddParagraphButton from './view/l1/AddParagraphButton';
 import Paragraph from './view/l2/Paragraph';
 
+
+const Main = styled.div`
+    width: 70%;
+    margin-left: 10px;
+`;
+
 const App = () => {
-    const Main = styled.div`
-        width: 70%;
-        margin-left: 10px;
-    `;
+
+    const paragraph = useSelector((state: RootState) => state.paragraph).map((e, i) => {
+        return (<Paragraph id={i} paragraph={e} />);
+    });;
+    
+
     return (
         <div className="App">
-            {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header> */}
             <Main>
-                <Paragraph />
-                <Paragraph />
-                <Paragraph />
+
+                { paragraph }
+
                 <IconButton >
-                    <Add />
+                    <AddParagraphButton />
                 </IconButton>
             </Main>
         </div>

@@ -1,27 +1,20 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
+import { Add } from '@material-ui/icons';
 
-import { RootState } from '../../store/rootReducer';
-
+import ParagraphSlice from '../../store/ParagraphSlice';
 
 
 type Props = {
-    id: number;
+
 }
 
-const Main = styled.div`
-        
-`;
-
 const App = (props: Props) => {
-    const text = useSelector((state: RootState) => state.paragraph[props.id].text);
     const dispatch = useDispatch();
 
     return (
-        <Main>
-            {text.length}
-        </Main>
+        <Add onClick={() => dispatch(ParagraphSlice.actions.add())} />
     );
 };
 

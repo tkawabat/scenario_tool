@@ -1,22 +1,30 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 
-interface ParagraphState {
+export interface Paragraph {
     text: string;
     memo: string;
 }
 
-const initialState: ParagraphState = {
+const initialParagraph = {
     text: "",
     memo: "",
 }
+
+export type changeTextPayload = {
+    id: number;
+    text: string;
+}
+
+const initialState: Paragraph[] = [initialParagraph];
 
 const slice = createSlice({
     name: "paragraph",
     initialState,
     reducers: {
-        changeText: (state, action: PayloadAction<string>) => {
-            state.text = action.payload;
+        add: (state) => { state.push(initialParagraph); },
+        changeText: (state, action: PayloadAction<changeTextPayload>) => {
+            state[action.payload.id].text = action.payload.text;
         },
     }
 });

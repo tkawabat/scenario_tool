@@ -1,7 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const App = () => {
+
+type Props = {
+    id: number;
+}
+
+const App = (props: Props) => {
     const Area = styled.textarea`
         width: 30%;
         height: 200px;
