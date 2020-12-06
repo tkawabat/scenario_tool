@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
 import { Paragraph } from '../../store/ParagraphSlice';
@@ -6,18 +6,25 @@ import { Paragraph } from '../../store/ParagraphSlice';
 import ScenarioArea from '../l1/ScenarioArea';
 import ScenarioAreaCount from '../l1/ScenarioAreaCount';
 import MemoArea from '../l1/MemoArea';
-
+import ParagraphTool from '../l2/ParagraphTool';
 
 const Root = styled.div`
     display: flex;
-    flex-direction: column;
-    width: 90%;
+    width: 95%;
+    justify-content: space-between;
+    margin-top: 10px;
+    min-height: 200px;
+    transition: all 1000ms ease;
 `;
 const Main = styled.div`
     display: flex;
+    flex-direction: column;
+    width: 74%;
 `;
-const Footer = styled.div`
+const Sub = styled.div`
     display: flex;
+    flex-direction: column;
+    width: 24%;
 `;
 
 type Props = {
@@ -26,16 +33,20 @@ type Props = {
 }
 
 const App = (props: Props) => {
+
+    const [mount, setMount] = useState(true);
+
     
     return (
         <Root className="paragraph">
             <Main>
                 <ScenarioArea id={props.id} />
-                <MemoArea id={props.id} />
-            </Main>
-            <Footer>
                 <ScenarioAreaCount id={props.id} />
-            </Footer>
+            </Main>
+            <Sub>
+                <ParagraphTool id={props.id} />
+                <MemoArea id={props.id} />
+            </Sub>
         </Root>
     );
 };

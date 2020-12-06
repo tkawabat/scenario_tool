@@ -5,14 +5,13 @@ import styled from 'styled-components';
 import { RootState } from '../../store/rootReducer';
 
 
+const Main = styled.div`
+        
+`;
 
 type Props = {
     id: number;
 }
-
-const Main = styled.div`
-        
-`;
 
 const App = (props: Props) => {
     const text = useSelector((state: RootState) => state.paragraph[props.id].text);
