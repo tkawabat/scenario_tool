@@ -4,8 +4,10 @@ import styled from 'styled-components';
 
 import { RootState } from './store/rootReducer';
 
-import AddParagraphButton from './view/l1/AddParagraphButton';
+
+import Header from './view/l3/Header';
 import Paragraph from './view/l3/Paragraph';
+import AddParagraphButton from './view/l1/AddParagraphButton';
 
 
 const Main = styled.div`
@@ -24,6 +26,7 @@ const App = () => {
     return (
         <div className="App">
             <Main>
+                <Header />
                 { paragraph }
 
                 <AddParagraphButton />
