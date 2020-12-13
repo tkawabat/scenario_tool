@@ -28,6 +28,12 @@ export type changeMemoPayload = {
     memo: string;
 }
 
+export const getText = (paragraph: Paragraph[]) :string => {
+    return paragraph.map((p) => {
+        return p.subTitle + "\r\n\r\n" + p.text + "\r\n\r\n";
+    }).join("\r\n");
+}
+
 const initialState: Paragraph[] = [initialParagraph];
 
 
