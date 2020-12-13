@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { Paragraph } from '../../store/ParagraphSlice';
 
+import ParagraphTitle from '../l1/ParagraphTitle';
 import ScenarioArea from '../l1/ScenarioArea';
 import ScenarioAreaCount from '../l1/ScenarioAreaCount';
 import MemoArea from '../l1/MemoArea';
@@ -33,13 +34,11 @@ type Props = {
 }
 
 const App = (props: Props) => {
-
-    const [mount, setMount] = useState(true);
-
     
     return (
         <Root className="paragraph">
             <Main>
+                <ParagraphTitle id={props.id} />
                 <ScenarioArea id={props.id} />
                 <ScenarioAreaCount id={props.id} />
             </Main>
