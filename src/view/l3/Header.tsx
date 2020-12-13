@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Paragraph } from '../../store/ParagraphSlice';
 
 import ParagraphTitle from '../l1/ParagraphTitle';
-import FileButton from '../l1/FileButton';
+import JsonExportButton from '../l1/JsonExportButton';
 
 const Root = styled.div`
     display: flex;
@@ -40,7 +40,7 @@ const App = (props: Props) => {
             <Left></Left>
             <Center></Center>
             <Right>
-                <FileButton />
+                <JsonExportButton />
             </Right>
         </Root>
     );
