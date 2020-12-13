@@ -2,13 +2,20 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 
 export interface Paragraph {
+    subTitle: string;
     text: string;
     memo: string;
 }
 
 const initialParagraph: Paragraph = {
+    subTitle: "",
     text: "",
     memo: "",
+}
+
+export type changeSubTitlePayload = {
+    id: number;
+    subTitle: string;
 }
 
 export type changeTextPayload = {
@@ -32,6 +39,9 @@ const slice = createSlice({
         delete: (state, action: PayloadAction<number>) => {
             state.splice(action.payload, 1);
             return state;
+        },
+        changeSubTitle: (state, action: PayloadAction<changeSubTitlePayload>) => {
+            state[action.payload.id].subTitle = action.payload.subTitle;
         },
         changeText: (state, action: PayloadAction<changeTextPayload>) => {
             state[action.payload.id].text = action.payload.text;
