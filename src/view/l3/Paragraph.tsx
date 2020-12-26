@@ -29,8 +29,8 @@ const Sub = styled.div`
 `;
 
 type Props = {
-    id: number
-    paragraph: Paragraph
+    id: number;
+    paragraph: Paragraph;
 }
 
 const App = (props: Props) => {

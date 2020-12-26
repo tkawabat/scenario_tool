@@ -2,7 +2,7 @@
 
 class FileUtil {
 
-    public download = (fileName: string, text: string) => {
+    download(fileName: string, text: string) {
         const aTag = document.createElement("a");
         aTag.download = fileName;
         aTag.href = URL.createObjectURL(new Blob([text], { type: "text/plain" }));
