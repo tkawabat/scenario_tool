@@ -1,18 +1,12 @@
-
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
-import { IconButton, Tooltip } from '@material-ui/core';
-import { Publish } from '@material-ui/icons';
+import { Button,  } from '@material-ui/core';
 
 import { RootState } from '../../store/rootReducer';
 
-import FileUtil from '../../lib/FileUtil';
+import PdfUtil from '../../lib/PdfUtil';
 
-
-const Main = styled(IconButton)`
-    
-`;
 
 type Props = {
 }
@@ -25,20 +19,18 @@ const App = (props: Props) => {
         if (!e.target.files) return;
         const files = e.target.files;
 
-        // TODO
+        files[0].arrayBuffer().then((ab: ArrayBuffer) => {
+            PdfUtil.convertText(Buffer.from(ab));
+        });
 
         e.target.value = ""; // 空にすることで次のonchangeが発火するようにする
     }
 
     return (
-        <Tooltip title="プロジェクトを読込" arrow>
-        <IconButton 
-            component="label"
-        >
-            <Publish />
-            <input type="file" hidden accept=".json" onChange={(e) => console.log(e.target.files)} />
-         </IconButton>
-         </Tooltip>
+        <Button variant="contained" component="label">
+            PDFファイルを読み込み
+            <input type="file" hidden accept=".pdf" onChange={onChange} />
+         </Button>
     );
 };
 
