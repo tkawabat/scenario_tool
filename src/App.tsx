@@ -1,37 +1,20 @@
 import React from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import styled from 'styled-components';
+import { HashRouter, Switch, Route, } from 'react-router-dom';
 
-import { RootState } from './store/rootReducer';
-
-
-import Header from './view/l3/Header';
-import Paragraph from './view/l3/Paragraph';
-import AddParagraphButton from './view/l1/AddParagraphButton';
-
-
-const Main = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
+import Hakogaki from './view/l5/Hakogaki';
+import Pdf from './view/l5/Pdf';
 
 const App = () => {
 
-    const paragraph = useSelector((state: RootState) => state.paragraph).map((e, i) => {
-        return (<Paragraph id={i} paragraph={e} key={i} />);
-    });;
-    
-
     return (
-        <div className="App">
-            <Main>
-                <Header />
-                { paragraph }
+        <HashRouter>
+            <Switch>
+                <Route path="/hakogaki" component={Hakogaki} />
+                <Route path="/pdf" component={Pdf}>
 
-                <AddParagraphButton />
-            </Main>
-        </div>
+                </Route>
+            </Switch>
+        </HashRouter>
     );
 }
 
