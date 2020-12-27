@@ -5,7 +5,7 @@ import { IconButton, Tooltip } from '@material-ui/core';
 import { Save } from '@material-ui/icons';
 
 import { RootState } from '../../store/rootReducer';
-import { getText } from '../../store/ParagraphSlice';
+import { getText } from '../../store/ScenarioSlice';
 
 import FileUtil from '../../lib/FileUtil';
 
@@ -18,7 +18,7 @@ type Props = {
 }
 
 const App = (props: Props) => {
-    const paragraph = useSelector((state: RootState) => state.paragraph);
+    const paragraph = useSelector((state: RootState) => state.scenario.paragraph);
     const dispatch = useDispatch();
 
     return (

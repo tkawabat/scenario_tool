@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { IconButton, Tooltip } from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
 
-import ParagraphSlice from '../../store/ParagraphSlice';
+import ScenarioSlice from '../../store/ScenarioSlice';
 
 
 const Main = styled(IconButton)`
@@ -22,7 +22,7 @@ const App = (props: Props) => {
         <Tooltip title="段落を削除" arrow>
             <IconButton
                 size={'small'}
-                onClick={() => dispatch(ParagraphSlice.actions.delete(props.id))}
+                onClick={() => dispatch(ScenarioSlice.actions.delete(props.id))}
             >
                 <Delete />
             </IconButton>

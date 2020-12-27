@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { TextField } from '@material-ui/core';
 
 import { RootState } from '../../store/rootReducer';
-import ParagraphSlice from '../../store/ParagraphSlice';
+import ScenarioSlice from '../../store/ScenarioSlice';
 
 
 type Props = {
@@ -15,14 +15,14 @@ const Area = styled(TextField)`
 `;
 
 const App = (props: Props) => {
-    const subTitle = useSelector((state: RootState) => state.paragraph[props.id].subTitle);
+    const subTitle = useSelector((state: RootState) => state.scenario.paragraph[props.id].subTitle);
     const dispatch = useDispatch();
 
     return (
         <Area
             placeholder="章タイトルを入力"
             onChange={(e) => {
-                dispatch(ParagraphSlice.actions.changeSubTitle({
+                dispatch(ScenarioSlice.actions.changeSubTitle({
                     id: props.id,
                     subTitle: e.target.value
                 }));

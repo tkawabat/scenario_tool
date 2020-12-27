@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
 
 import { RootState } from '../../store/rootReducer';
-import ParagraphSlice from '../../store/ParagraphSlice';
+import ScenarioSlice from '../../store/ScenarioSlice';
 
 
 const Area = styled.textarea`
@@ -15,14 +15,14 @@ type Props = {
 }
 
 const App = (props: Props) => {
-    const memo = useSelector((state: RootState) => state.paragraph[props.id].memo);
+    const memo = useSelector((state: RootState) => state.scenario.paragraph[props.id].memo);
     const dispatch = useDispatch();
 
     return (
         <Area
             placeholder="メモを入力"
             onChange={(e) => {
-                dispatch(ParagraphSlice.actions.changeMemo({
+                dispatch(ScenarioSlice.actions.changeMemo({
                     id: props.id,
                     memo: e.target.value
                 }));

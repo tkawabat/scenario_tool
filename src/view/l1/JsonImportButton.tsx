@@ -18,7 +18,7 @@ type Props = {
 }
 
 const App = (props: Props) => {
-    const paragraph = useSelector((state: RootState) => state.paragraph);
+    const paragraph = useSelector((state: RootState) => state.scenario.paragraph);
     const dispatch = useDispatch();
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {

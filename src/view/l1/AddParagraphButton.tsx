@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { IconButton } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
 
-import ParagraphSlice from '../../store/ParagraphSlice';
+import ScenarioSlice from '../../store/ScenarioSlice';
 
 
 const Main = styled(IconButton)`
@@ -19,7 +19,7 @@ const App = (props: Props) => {
     const dispatch = useDispatch();
 
     return (
-        <Main onClick={() => dispatch(ParagraphSlice.actions.add())}>
+        <Main onClick={() => dispatch(ScenarioSlice.actions.add())}>
             <Add />
         </Main>
     );

@@ -1,5 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+export interface Scenario {
+    title: string;
+    paragraph: Paragraph[];
+}
 
 export interface Paragraph {
     subTitle: string;
@@ -11,6 +15,10 @@ const initialParagraph: Paragraph = {
     subTitle: "",
     text: "",
     memo: "",
+}
+
+export type changeTitlePayload = {
+    title: string;
 }
 
 export type changeSubTitlePayload = {
@@ -34,26 +42,31 @@ export const getText = (paragraph: Paragraph[]) :string => {
     }).join("\r\n");
 }
 
-const initialState: Paragraph[] = [initialParagraph];
-
+const initialState: Scenario = {
+    title: "",
+    paragraph: [initialParagraph],
+}
 
 const slice = createSlice({
-    name: "paragraph",
+    name: "scenario",
     initialState,
     reducers: {
-        add: (state) => { state.push(initialParagraph); },
+        add: (state) => { state.paragraph.push(initialParagraph); },
         delete: (state, action: PayloadAction<number>) => {
-            state.splice(action.payload, 1);
+            state.paragraph.splice(action.payload, 1);
             return state;
         },
+        changeTitle: (state, action: PayloadAction<changeTitlePayload>) => {
+            state.title = action.payload.title;
+        },
         changeSubTitle: (state, action: PayloadAction<changeSubTitlePayload>) => {
-            state[action.payload.id].subTitle = action.payload.subTitle;
+            state.paragraph[action.payload.id].subTitle = action.payload.subTitle;
         },
         changeText: (state, action: PayloadAction<changeTextPayload>) => {
-            state[action.payload.id].text = action.payload.text;
+            state.paragraph[action.payload.id].text = action.payload.text;
         },
         changeMemo: (state, action: PayloadAction<changeMemoPayload>) => {
-            state[action.payload.id].memo = action.payload.memo;
+            state.paragraph[action.payload.id].memo = action.payload.memo;
         },
     }
 });

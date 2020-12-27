@@ -1,9 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit'
 
-import ParagraphSlice from './ParagraphSlice';
+import ScenarioSlice from './ScenarioSlice';
 
 const rootReducer = combineReducers({
-    paragraph: ParagraphSlice.reducer
+    scenario: ScenarioSlice.reducer
 })
  
 export type RootState = ReturnType<typeof rootReducer>

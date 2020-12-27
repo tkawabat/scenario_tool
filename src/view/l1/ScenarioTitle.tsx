@@ -1,33 +1,33 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
+import { TextField } from '@material-ui/core';
 
 import { RootState } from '../../store/rootReducer';
 import ScenarioSlice from '../../store/ScenarioSlice';
 
 
-const Area = styled.textarea`
-        height: 100%;
-    `;
-
 type Props = {
     id: number;
 }
 
+const Area = styled(TextField)`
+`;
+
 const App = (props: Props) => {
-    const memo = useSelector((state: RootState) => state.scenario.paragraph[props.id].memo);
+    const title = useSelector((state: RootState) => state.scenario.paragraph[props.id].subTitle);
     const dispatch = useDispatch();
 
     return (
         <Area
-            placeholder="メモを入力"
+            placeholder="タイトルを入力"
             onChange={(e) => {
-                dispatch(ScenarioSlice.actions.changeMemo({
+                dispatch(ScenarioSlice.actions.changeSubTitle({
                     id: props.id,
-                    memo: e.target.value
+                    subTitle: e.target.value
                 }));
             }}
-            value={memo}
+            value={title}
         />
     );
 };

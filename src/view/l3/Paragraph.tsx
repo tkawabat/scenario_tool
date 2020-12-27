@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import { Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 
-import { Paragraph } from '../../store/ParagraphSlice';
+import { Paragraph } from '../../store/ScenarioSlice';
 
 import ParagraphTitle from '../l1/ParagraphTitle';
 import ScenarioArea from '../l1/ScenarioArea';
 import ScenarioAreaCount from '../l1/ScenarioAreaCount';
 import MemoArea from '../l1/MemoArea';
 import ParagraphTool from '../l2/ParagraphTool';
+
 
 const Root = styled(Accordion)`
     display: flex;
