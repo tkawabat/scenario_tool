@@ -7,8 +7,8 @@ import ParagraphSlice from '../../store/ParagraphSlice';
 
 
 const Area = styled.textarea`
-        height: 100%;
-    `;
+    height: 100%;
+`;
 
 type Props = {
     id: number;

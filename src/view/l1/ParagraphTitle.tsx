@@ -20,7 +20,7 @@ const App = (props: Props) => {
 
     return (
         <Area
-            placeholder="サブタイトルを入力"
+            placeholder="章タイトルを入力"
             onChange={(e) => {
                 dispatch(ParagraphSlice.actions.changeSubTitle({
                     id: props.id,

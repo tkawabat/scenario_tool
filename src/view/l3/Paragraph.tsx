@@ -1,5 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import { Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
+import { ExpandMore } from '@material-ui/icons';
 
 import { Paragraph } from '../../store/ParagraphSlice';
 
@@ -9,13 +11,25 @@ import ScenarioAreaCount from '../l1/ScenarioAreaCount';
 import MemoArea from '../l1/MemoArea';
 import ParagraphTool from '../l2/ParagraphTool';
 
-const Root = styled.div`
+const Root = styled(Accordion)`
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    justify-content: space-between;
+    margin-top: 10px;
+`;
+const Header = styled(AccordionSummary)`
+    width: 97%;
+`;
+const Title = styled(ParagraphTitle)`
+    width: 70%;
+`;
+
+const Detail = styled(AccordionDetails)`
     display: flex;
     width: 95%;
     justify-content: space-between;
     margin-top: 10px;
-    min-height: 200px;
-    transition: all 1000ms ease;
 `;
 const Main = styled.div`
     display: flex;
@@ -37,15 +51,21 @@ const App = (props: Props) => {
     
     return (
         <Root className="paragraph">
-            <Main>
-                <ParagraphTitle id={props.id} />
-                <ScenarioArea id={props.id} />
-                <ScenarioAreaCount id={props.id} />
-            </Main>
-            <Sub>
-                <ParagraphTool id={props.id} />
-                <MemoArea id={props.id} />
-            </Sub>
+            <Header
+                expandIcon={<ExpandMore />}
+            >
+                <Title id={props.id} />
+            </Header>
+            <Detail>
+                <Main>
+                    <ScenarioArea id={props.id} />
+                    <ScenarioAreaCount id={props.id} />
+                </Main>
+                <Sub>
+                    <MemoArea id={props.id} />
+                    <ParagraphTool id={props.id} />
+                </Sub>
+            </Detail>
         </Root>
     );
 };
