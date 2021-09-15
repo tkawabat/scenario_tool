@@ -8,26 +8,26 @@ import ScenarioSlice from '../../store/ScenarioSlice';
 
 
 type Props = {
-    id: number;
 }
 
 const Area = styled(TextField)`
 `;
 
 const App = (props: Props) => {
-    const title = useSelector((state: RootState) => state.scenario.paragraph[props.id].subTitle);
+    const title = useSelector((state: RootState) => state.scenario.title);
     const dispatch = useDispatch();
 
     return (
         <Area
-            placeholder="タイトルを入力"
+            className="scenarioTitle"
+            placeholder="作品タイトルを入力"
             onChange={(e) => {
-                dispatch(ScenarioSlice.actions.changeSubTitle({
-                    id: props.id,
-                    subTitle: e.target.value
+                dispatch(ScenarioSlice.actions.changeTitle({
+                    title: e.target.value
                 }));
             }}
             value={title}
+            {...props}
         />
     );
 };

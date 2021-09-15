@@ -14,7 +14,7 @@ type Props = {
 }
 
 const App = (props: Props) => {
-    const text = useSelector((state: RootState) => state.paragraph[props.id].text);
+    const text = useSelector((state: RootState) => state.scenario.paragraph[props.id].text);
     const dispatch = useDispatch();
 
     return (

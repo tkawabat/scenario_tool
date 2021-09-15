@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import JsonExportButton from '../l1/JsonExportButton';
 import JsonImportButton from '../l1/JsonImportButton';
 import TextExportButton from '../l1/TextExportButton';
+import ScenarioTitle from '../l1/ScenarioTitle';
 
 
 const Root = styled.div`
@@ -53,7 +54,9 @@ const App = (props: Props) => {
             <Left>
                 <ToolTitle>HAKOGAKI</ToolTitle>
             </Left>
-            <Center></Center>
+            <Center>
+                <ScenarioTitle />
+            </Center>
             <Right>
                 <JsonImportButton />
                 <JsonExportButton />

@@ -10,28 +10,25 @@ import AddParagraphButton from '../l1/AddParagraphButton';
 
 
 const Main = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 type Props = {
 }
 
 const App = (props: Props) => {
-    const paragraph = useSelector((state: RootState) => state.paragraph).map((e, i) => {
+    const paragraph = useSelector((state: RootState) => state.scenario.paragraph).map((e, i) => {
         return (<Paragraph id={i} paragraph={e} key={i} />);
     });
 
     return (
-        <div className="App">
-            <Main>
-                <Header />
-                {paragraph}
-
-                <AddParagraphButton />
-            </Main>
-        </div>
+        <Main className="App">
+            <Header />
+            {paragraph}
+            <AddParagraphButton />
+        </Main>
     );
 }
 
