@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { RootState } from '../../store/rootReducer';
 
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import Header from '../l3/Header';
 import Paragraph from '../l3/Paragraph';
 import AddParagraphButton from '../l1/AddParagraphButton';
@@ -24,11 +25,16 @@ const App = (props: Props) => {
     });
 
     return (
-        <Main className="App">
-            <Header />
-            {paragraph}
-            <AddParagraphButton />
-        </Main>
+        <HelmetProvider>
+            <Helmet>
+                <title>HAKOGAKI</title>
+            </Helmet>
+            <Main className="App">
+                <Header />
+                {paragraph}
+                <AddParagraphButton />
+            </Main>
+        </HelmetProvider>
     );
 }
 
