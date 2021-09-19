@@ -6,8 +6,7 @@ import { IconButton, Tooltip } from '@material-ui/core';
 import { Publish } from '@material-ui/icons';
 
 import { RootState } from '../../store/rootReducer';
-
-import FileUtil from '../../lib/FileUtil';
+import ScenarioSlice, { LoadPayload, Scenario } from '../../store/ScenarioSlice';
 
 
 const Main = styled(IconButton)`
@@ -21,11 +20,20 @@ const App = (props: Props) => {
     const paragraph = useSelector((state: RootState) => state.scenario.paragraph);
     const dispatch = useDispatch();
 
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const load = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files) return;
-        const files = e.target.files;
+        const text = await e.target.files[0].text();
 
         // TODO
+        try {
+            const scenario: Scenario = JSON.parse(text);
+            const payload: LoadPayload = {
+                scenario: scenario
+            };
+            dispatch(ScenarioSlice.actions.load(payload))
+        } catch {
+            window.alert('プロジェクトファイルの読み込みに失敗しました。形式が間違っています。');
+        }
 
         e.target.value = ""; // 空にすることで次のonchangeが発火するようにする
     }
@@ -36,7 +44,7 @@ const App = (props: Props) => {
             component="label"
         >
             <Publish />
-            <input type="file" hidden accept=".json" onChange={(e) => console.log(e.target.files)} />
+            <input type="file" hidden accept=".json" onChange={load} />
          </IconButton>
          </Tooltip>
     );

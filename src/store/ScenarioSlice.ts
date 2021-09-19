@@ -33,6 +33,10 @@ const initialParagraph: Paragraph = {
     memo: "",
 }
 
+export interface LoadPayload {
+    scenario: Scenario;
+}
+
 export interface changeTitlePayload {
     title: string;
 }
@@ -87,6 +91,10 @@ const slice = createSlice({
     name: "scenario",
     initialState,
     reducers: {
+        load: (state, action: PayloadAction<LoadPayload>) => {
+            state.title = action.payload.scenario.title;
+            state.paragraph = action.payload.scenario.paragraph;
+        },
         add: (state) => { state.paragraph.push(initialParagraph); },
         delete: (state, action: PayloadAction<number>) => {
             state.paragraph.splice(action.payload, 1);
