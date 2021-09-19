@@ -5,33 +5,65 @@ export interface Scenario {
     paragraph: Paragraph[];
 }
 
+export interface Todo {
+    text: string;
+    checked: boolean;
+}
+
+const initialTodo: Todo = {
+    text: "",
+    checked: false
+}
+
 export interface Paragraph {
     subTitle: string;
     text: string;
     memo: string;
+    todo: Todo[];
 }
 
 const initialParagraph: Paragraph = {
     subTitle: "",
     text: "",
+    todo: [JSON.parse(JSON.stringify(initialTodo))],
     memo: "",
 }
 
-export type changeTitlePayload = {
+export interface changeTitlePayload {
     title: string;
 }
 
-export type changeSubTitlePayload = {
+export interface changeSubTitlePayload {
     id: number;
     subTitle: string;
 }
 
-export type changeTextPayload = {
+export interface changeTextPayload {
     id: number;
     text: string;
 }
 
-export type changeMemoPayload = {
+export interface addTodoPayload {
+    paragraphId: number;
+}
+
+export interface deleteTodoPayload {
+    paragraphId: number;
+    todoId: number;
+}
+
+export interface changeTodoTextPayload {
+    paragraphId: number;
+    todoId: number;
+    text: string;
+}
+
+export interface toggleTodoPayload {
+    paragraphId: number;
+    todoId: number;
+}
+
+export interface changeMemoPayload {
     id: number;
     memo: string;
 }
@@ -64,6 +96,21 @@ const slice = createSlice({
         },
         changeText: (state, action: PayloadAction<changeTextPayload>) => {
             state.paragraph[action.payload.id].text = action.payload.text;
+        },
+        addTodo: (state, action: PayloadAction<addTodoPayload>) => {
+            state.paragraph[action.payload.paragraphId].todo.push(JSON.parse(JSON.stringify(initialTodo)));
+        },
+        deleteTodo: (state, action: PayloadAction<deleteTodoPayload>) => {
+            state.paragraph[action.payload.paragraphId].todo.splice(action.payload.todoId, 1);
+        },
+        changeTodoText: (state, action: PayloadAction<changeTodoTextPayload>) => {
+            const payload = action.payload;
+            state.paragraph[payload.paragraphId].todo[payload.todoId].text = payload.text;
+        },
+        toggleTodo: (state, action: PayloadAction<toggleTodoPayload>) => {
+            const payload = action.payload;
+            state.paragraph[payload.paragraphId].todo[payload.todoId].checked =
+                !state.paragraph[payload.paragraphId].todo[payload.todoId].checked;
         },
         changeMemo: (state, action: PayloadAction<changeMemoPayload>) => {
             state.paragraph[action.payload.id].memo = action.payload.memo;
