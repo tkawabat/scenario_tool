@@ -1,6 +1,6 @@
 import React from 'react';
+import Moment from 'moment';
 import { useDispatch, useSelector } from "react-redux";
-import styled from 'styled-components';
 import { IconButton, Tooltip } from '@material-ui/core';
 import { GetApp } from '@material-ui/icons';
 
@@ -13,13 +13,18 @@ type Props = {
 }
 
 const App = (props: Props) => {
-    const paragraph = useSelector((state: RootState) => state.scenario.paragraph);
+    const scenario = useSelector((state: RootState) => state.scenario);
     const dispatch = useDispatch();
+
+    const fileName = scenario.title
+        + Moment().format('YYYYMMDDHHmmss')
+        + '.json'
+    ;
 
     return (
         <Tooltip title="プロジェクトを保存" arrow>
         <IconButton 
-            onClick={() => FileUtil.download('hoge.json', JSON.stringify(paragraph))}
+            onClick={() => FileUtil.download(fileName, JSON.stringify(scenario))}
         >
             <GetApp />
         </IconButton>
