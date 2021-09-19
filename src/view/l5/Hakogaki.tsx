@@ -6,7 +6,7 @@ import { RootState } from '../../store/rootReducer';
 
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import Header from '../l3/Header';
-import Paragraph from '../l3/Paragraph';
+import Paragraph from '../l4/Paragraph';
 import AddParagraphButton from '../l1/AddParagraphButton';
 
 
