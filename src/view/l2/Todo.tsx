@@ -1,10 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
-import { TextField, Checkbox } from '@material-ui/core';
+import { Tooltip, IconButton, TextField, Checkbox } from '@material-ui/core';
+import { Delete } from '@material-ui/icons';
 
 import { RootState } from '../../store/rootReducer';
-import ScenarioSlice, { changeTodoTextPayload, toggleTodoPayload } from '../../store/ScenarioSlice';
+import ScenarioSlice, { changeTodoTextPayload, deleteTodoPayload, toggleTodoPayload } from '../../store/ScenarioSlice';
 
 
 const Main = styled.div`
@@ -20,7 +21,7 @@ const App = (props: TodoProps) => {
     const todo = useSelector((state: RootState) => state.scenario.paragraph[props.paragraphId].todo[props.todoId]);
     const dispatch = useDispatch();
 
-    const onToggle = ()=> {
+    const toggle = ()=> {
         const payload: toggleTodoPayload = {
             paragraphId: props.paragraphId,
             todoId: props.todoId,
@@ -28,7 +29,7 @@ const App = (props: TodoProps) => {
         dispatch(ScenarioSlice.actions.toggleTodo(payload));
     }
 
-    const onChangeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const changeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const payload: changeTodoTextPayload = {
             paragraphId: props.paragraphId,
             todoId: props.todoId,
@@ -36,16 +37,35 @@ const App = (props: TodoProps) => {
         }
         dispatch(ScenarioSlice.actions.changeTodoText(payload));
     }
+
+    const deleteTodo = ()=> {
+        const payload: deleteTodoPayload = {
+            paragraphId: props.paragraphId,
+            todoId: props.todoId,
+        }
+        dispatch(ScenarioSlice.actions.deleteTodo(payload));
+    }
     
     return (
         <Main>
-            <Checkbox checked={todo.checked} onClick={onToggle} />
+            <Tooltip title="完了" arrow>
+                <Checkbox checked={todo.checked} onClick={toggle} />
+            </Tooltip>
             <TextField
                 variant="standard"
                 placeholder={"Todo"}
                 value={todo.text}
-                onChange={onChangeText}
+                onChange={changeText}
             />
+            <Tooltip title="Todoを削除" arrow>
+            <IconButton
+                size={'small'}
+                onClick={deleteTodo}
+            >
+                <Delete />
+            </IconButton>
+        </Tooltip>
+            
 
         </Main>
     );

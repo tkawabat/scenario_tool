@@ -25,7 +25,11 @@ export interface Paragraph {
 const initialParagraph: Paragraph = {
     subTitle: "",
     text: "",
-    todo: [JSON.parse(JSON.stringify(initialTodo))],
+    todo: [
+        JSON.parse(JSON.stringify(initialTodo)),
+        JSON.parse(JSON.stringify(initialTodo)),
+        JSON.parse(JSON.stringify(initialTodo)),
+    ],
     memo: "",
 }
 
