@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import JsonExportButton from '../l1/JsonExportButton';
 import JsonImportButton from '../l1/JsonImportButton';
-import TextExportButton from '../l1/TextExportButton';
+import DumpButton from '../l1/SaveButton';
 import ScenarioTitle from '../l1/ScenarioTitle';
 
 
@@ -59,8 +58,7 @@ const App = (props: Props) => {
             </Center>
             <Right>
                 <JsonImportButton />
-                <JsonExportButton />
-                <TextExportButton /> 
+                <DumpButton /> 
             </Right>
         </Root>
     );

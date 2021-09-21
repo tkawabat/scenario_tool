@@ -5,9 +5,6 @@ import { IconButton, Tooltip } from '@material-ui/core';
 import { Save } from '@material-ui/icons';
 
 import { RootState } from '../../store/rootReducer';
-import { getText } from '../../store/ScenarioSlice';
-
-import FileUtil from '../../lib/FileUtil';
 
 
 const Main = styled(IconButton)`
@@ -18,13 +15,16 @@ type Props = {
 }
 
 const App = (props: Props) => {
-    const paragraph = useSelector((state: RootState) => state.scenario.paragraph);
-    const dispatch = useDispatch();
+    const scenario = useSelector((state: RootState) => state.scenario);
+
+    const save = () => {
+        JSON.stringify(scenario)
+    }
 
     return (
-        <Tooltip title="台本を出力" arrow>
+        <Tooltip title="ブラウザに保存" arrow>
         <IconButton 
-            onClick={() => FileUtil.download('hoge.txt', getText(paragraph))}
+            onClick={save}
         >
             <Save />
         </IconButton>
