@@ -1,9 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export interface Scenario {
-    title: string;
-    paragraph: Paragraph[];
-}
 
 export interface Todo {
     text: string;
@@ -31,6 +27,12 @@ const initialParagraph: Paragraph = {
         JSON.parse(JSON.stringify(initialTodo)),
     ],
     memo: "",
+}
+
+export interface Scenario {
+    title: string;
+    paragraph: Paragraph[];
+    old: Paragraph[];
 }
 
 export interface LoadPayload {
@@ -76,15 +78,16 @@ export interface changeMemoPayload {
     memo: string;
 }
 
-export const getText = (paragraph: Paragraph[]) :string => {
-    return paragraph.map((p) => {
+export const getText = (scenario: Scenario) :string => {
+    return scenario.paragraph.map((p) => {
         return p.subTitle + "\r\n\r\n" + p.text + "\r\n\r\n";
     }).join("\r\n");
 }
 
 const initialState: Scenario = {
     title: "",
-    paragraph: [initialParagraph],
+    paragraph: [JSON.parse(JSON.stringify(initialParagraph))],
+    old: [JSON.parse(JSON.stringify(initialParagraph))],
 }
 
 const slice = createSlice({
@@ -94,6 +97,7 @@ const slice = createSlice({
         load: (state, action: PayloadAction<LoadPayload>) => {
             state.title = action.payload.scenario.title;
             state.paragraph = action.payload.scenario.paragraph;
+            state.old = action.payload.scenario.paragraph;
         },
         add: (state) => { state.paragraph.push(initialParagraph); },
         delete: (state, action: PayloadAction<number>) => {
