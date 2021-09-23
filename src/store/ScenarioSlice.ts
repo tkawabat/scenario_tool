@@ -79,9 +79,14 @@ export interface changeMemoPayload {
 }
 
 export const getText = (scenario: Scenario) :string => {
-    return scenario.paragraph.map((p) => {
-        return p.subTitle + "\r\n\r\n" + p.text + "\r\n\r\n";
-    }).join("\r\n");
+    const title = scenario.title ?
+        scenario.title + "\r\n\r\n" : '';
+
+    return title + scenario.paragraph.map((p) => {
+        const title = p.subTitle ?
+            p.subTitle + "\r\n\r\n" : '';
+        return title + p.text + "\r\n\r\n";
+    }).join("\r\n\r\n");
 }
 
 const initialState: Scenario = {
