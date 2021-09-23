@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import JsonImportButton from '../l1/JsonImportButton';
-import DumpButton from '../l1/SaveButton';
+import DumpButton from '../l1/DumpButton';
 import ScenarioTitle from '../l1/ScenarioTitle';
 
 
