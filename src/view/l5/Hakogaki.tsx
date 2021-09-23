@@ -1,18 +1,20 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import { RootState } from '../../store/rootReducer';
+import ScenarioSlice, { LoadPayload, Scenario } from '../../store/ScenarioSlice';
+import NotificationSlice, { AddNotificationPayload } from '../../store/NotificationSlice';
 
-import { TimerSaveProject, StorageKeyScenario, IntervalSaveScenario } from '../../lib/Const';
+import { TimerSaveProject, StorageKeyScenario, IntervalSaveScenario, NotificationType } from '../../lib/Const';
 import TimerUtil from '../../lib/TimerUtil';
 import StorageUtil from '../../lib/StorageUtil';
 
-import { Helmet, HelmetProvider } from 'react-helmet-async';
-import Header from '../l3/Header';
 import Paragraph from '../l4/Paragraph';
+import Header from '../l3/Header';
+import NotificationList from '../l2/NotificationList';
 import AddParagraphButton from '../l1/AddParagraphButton';
-import ScenarioSlice, { LoadPayload, Scenario } from '../../store/ScenarioSlice';
 
 
 const Main = styled.div`
@@ -33,16 +35,23 @@ const App = (props: Props) => {
 
     const loadStorage = () => {
         const json = StorageUtil.load(StorageKeyScenario);
-        if (typeof json == 'string' && window.confirm('前回のデータをロードしますか？')) {
+        if (typeof json == 'string') {
             try {
                 const scenario: Scenario = JSON.parse(json);
-                const payload: LoadPayload = {
+                const loadPayload: LoadPayload = {
                     scenario: scenario
                 }
-                dispatch(ScenarioSlice.actions.load(payload));
-            } catch {
+                dispatch(ScenarioSlice.actions.load(loadPayload));
+
+                const addNoticiationpayload: AddNotificationPayload = {
+                    notification: {
+                        text: '前回のデータを読み込みました。',
+                        type: NotificationType.INFO
+                    }
+                }
+                dispatch(NotificationSlice.actions.add(addNoticiationpayload));
+            } catch { // ERROR
                 StorageUtil.remove(StorageKeyScenario);
-                alert('データの読み込みに失敗しました。');
             }
 
         }
@@ -74,6 +83,7 @@ const App = (props: Props) => {
                 <Header />
                 {paragraphList}
                 <AddParagraphButton />
+                <NotificationList />
             </Main>
         </HelmetProvider>
     );
