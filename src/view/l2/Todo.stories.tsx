@@ -7,6 +7,6 @@ export default {
     component: Todo,
 };
 
-export const showTodo = () => {
+export const show = () => {
     return (<Todo paragraphId={0} todoId={0} />);
 }
