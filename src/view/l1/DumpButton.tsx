@@ -5,7 +5,7 @@ import { IconButton, Tooltip, Menu, MenuItem } from '@material-ui/core';
 import { GetApp } from '@material-ui/icons';
 
 import { RootState } from '../../store/rootReducer';
-import { getText } from '../../store/ScenarioSlice';
+import { getText, getTitle } from '../../store/ScenarioSlice';
 
 import FileUtil from '../../lib/FileUtil';
 
@@ -30,12 +30,12 @@ const App = (props: Props) => {
         setAnchorEl(null);
     };
     const saveProject = () => {
-        const fileName = scenario.title + '.json';
+        const fileName = getTitle(scenario) + '.json';
         FileUtil.download(fileName, JSON.stringify(scenario));
         handleClose();
     };
     const saveScenario = () => {
-        const fileName = scenario.title + '.txt';
+        const fileName = getTitle(scenario) + '.txt';
         FileUtil.download(fileName, getText(scenario));
         handleClose();
     };

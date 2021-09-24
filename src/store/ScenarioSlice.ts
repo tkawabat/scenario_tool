@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import * as C from '../lib/Const';
 
 
 export interface Todo {
@@ -76,6 +77,10 @@ export interface toggleTodoPayload {
 export interface changeMemoPayload {
     id: number;
     memo: string;
+}
+
+export const getTitle = (scenario: Scenario) => {
+    return scenario.title ? scenario.title : C.NOTITLE;
 }
 
 export const getText = (scenario: Scenario) :string => {

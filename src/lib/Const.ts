@@ -10,3 +10,5 @@ export enum NotificationType {
     WARNING = 'warning',
     ERROR = 'error',
 }
+
+export const NOTITLE = 'タイトル未定';
