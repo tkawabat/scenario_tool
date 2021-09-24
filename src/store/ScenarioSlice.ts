@@ -74,7 +74,7 @@ export interface toggleTodoPayload {
     todoId: number;
 }
 
-export interface changeMemoPayload {
+export interface ChangeMemoPayload {
     id: number;
     memo: string;
 }
@@ -94,7 +94,7 @@ export const getText = (scenario: Scenario) :string => {
     }).join("\r\n\r\n");
 }
 
-const initialState: Scenario = {
+export const initialState: Scenario = {
     title: "",
     paragraph: [JSON.parse(JSON.stringify(initialParagraph))],
     old: [JSON.parse(JSON.stringify(initialParagraph))],
@@ -138,7 +138,7 @@ const slice = createSlice({
             state.paragraph[payload.paragraphId].todo[payload.todoId].checked =
                 !state.paragraph[payload.paragraphId].todo[payload.todoId].checked;
         },
-        changeMemo: (state, action: PayloadAction<changeMemoPayload>) => {
+        changeMemo: (state, action: PayloadAction<ChangeMemoPayload>) => {
             state.paragraph[action.payload.id].memo = action.payload.memo;
         },
     }
