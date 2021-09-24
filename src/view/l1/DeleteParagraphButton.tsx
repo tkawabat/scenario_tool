@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
-import { IconButton, Tooltip } from '@material-ui/core';
-import { Delete } from '@material-ui/icons';
+import { IconButton, Tooltip } from '@mui/material/';
+import { Delete } from '@mui/icons-material/';
 
 import ScenarioSlice from '../../store/ScenarioSlice';
 

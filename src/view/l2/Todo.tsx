@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
-import { Tooltip, IconButton, TextField, Checkbox } from '@material-ui/core';
-import { Delete } from '@material-ui/icons';
+import { Tooltip, IconButton, TextField, Checkbox } from '@mui/material/';
+import { Delete } from '@mui/icons-material/';
 
 import { RootState } from '../../store/rootReducer';
 import ScenarioSlice, { changeTodoTextPayload, deleteTodoPayload, toggleTodoPayload } from '../../store/ScenarioSlice';

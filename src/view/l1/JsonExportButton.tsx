@@ -1,8 +1,8 @@
 import React from 'react';
 import Moment from 'moment';
 import { useDispatch, useSelector } from "react-redux";
-import { IconButton, Tooltip } from '@material-ui/core';
-import { GetApp } from '@material-ui/icons';
+import { IconButton, Tooltip } from '@mui/material/';
+import { GetApp } from '@mui/icons-material/';
 
 import { RootState } from '../../store/rootReducer';
 

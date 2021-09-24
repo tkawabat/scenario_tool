@@ -2,8 +2,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
-import { IconButton, Tooltip } from '@material-ui/core';
-import { Publish } from '@material-ui/icons';
+import { IconButton, Tooltip } from '@mui/material/';
+import { Publish } from '@mui/icons-material/';
 
 import { RootState } from '../../store/rootReducer';
 import ScenarioSlice, { LoadPayload, Scenario } from '../../store/ScenarioSlice';

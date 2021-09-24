@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
-import { IconButton, Tooltip, Menu, MenuItem } from '@material-ui/core';
-import { GetApp } from '@material-ui/icons';
+import { IconButton, Tooltip, Menu, MenuItem } from '@mui/material/';
+import { GetApp } from '@mui/icons-material/';
 
 import { RootState } from '../../store/rootReducer';
 import { getText, getTitle } from '../../store/ScenarioSlice';

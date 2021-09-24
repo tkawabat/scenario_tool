@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
-import { TextField } from '@material-ui/core';
+import { TextField } from '@mui/material/';
 
 import { RootState } from '../../store/rootReducer';
 import ScenarioSlice from '../../store/ScenarioSlice';
