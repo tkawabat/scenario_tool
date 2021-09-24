@@ -2,18 +2,17 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { useSnackbar } from 'notistack';
 
 import { RootState } from '../../store/rootReducer';
 import ScenarioSlice, { LoadPayload, Scenario } from '../../store/ScenarioSlice';
-import NotificationSlice, { AddNotificationPayload } from '../../store/NotificationSlice';
 
-import { TimerSaveProject, StorageKeyScenario, IntervalSaveScenario, NotificationType } from '../../lib/Const';
+import * as C from '../../lib/Const';
 import TimerUtil from '../../lib/TimerUtil';
 import StorageUtil from '../../lib/StorageUtil';
 
 import Paragraph from '../l4/Paragraph';
 import Header from '../l3/Header';
-import NotificationList from '../l2/NotificationList';
 import AddParagraphButton from '../l1/AddParagraphButton';
 
 
@@ -27,6 +26,7 @@ type Props = {
 }
 
 const App = (props: Props) => {
+    const { enqueueSnackbar, } = useSnackbar();
     const dispatch = useDispatch();
     const scenario = useSelector((state: RootState) => state.scenario);
     const paragraphList = scenario.paragraph.map((e, i) => {
@@ -34,7 +34,7 @@ const App = (props: Props) => {
     });
 
     const loadStorage = () => {
-        const json = StorageUtil.load(StorageKeyScenario);
+        const json = StorageUtil.load(C.StorageKeyScenario);
         if (typeof json == 'string') {
             try {
                 const scenario: Scenario = JSON.parse(json);
@@ -43,15 +43,10 @@ const App = (props: Props) => {
                 }
                 dispatch(ScenarioSlice.actions.load(loadPayload));
 
-                const addNoticiationpayload: AddNotificationPayload = {
-                    notification: {
-                        text: '前回のデータを読み込みました。',
-                        type: NotificationType.INFO
-                    }
-                }
-                dispatch(NotificationSlice.actions.add(addNoticiationpayload));
+                // 通知
+                enqueueSnackbar('前回のデータを読み込みました。', { variant: C.NotificationType.SUCCESS });
             } catch { // ERROR
-                StorageUtil.remove(StorageKeyScenario);
+                StorageUtil.remove(C.StorageKeyScenario);
             }
 
         }
@@ -67,9 +62,9 @@ const App = (props: Props) => {
         loadStorage();
 
         // 自動保存
-        TimerUtil.setInterval(TimerSaveProject, () => {
-            StorageUtil.save(StorageKeyScenario, JSON.stringify(scenarioRef.current));
-        }, IntervalSaveScenario * 1000);
+        TimerUtil.setInterval(C.TimerSaveProject, () => {
+            StorageUtil.save(C.StorageKeyScenario, JSON.stringify(scenarioRef.current));
+        }, C.IntervalSaveScenario);
     }
 
     useEffect(init, []);
@@ -83,14 +78,9 @@ const App = (props: Props) => {
                 <Header />
                 {paragraphList}
                 <AddParagraphButton />
-                <NotificationList />
             </Main>
         </HelmetProvider>
     );
 }
 
 export default App;
-
-function dispatch(arg0: any) {
-    throw new Error('Function not implemented.');
-}

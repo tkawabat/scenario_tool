@@ -1,4 +1,5 @@
-import { Provider } from "react-redux"
+import { Provider } from "react-redux";
+import { SnackbarProvider } from 'notistack';
 import { store } from '../src/store';
 
 export const parameters = {
@@ -14,7 +15,9 @@ export const parameters = {
 export const decorators = [
     (Story) => (
         <Provider store={store}>
-            <Story />
+            <SnackbarProvider>
+                <Story />
+            </SnackbarProvider>
         </Provider>
     ),
 ]
