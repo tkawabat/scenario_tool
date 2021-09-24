@@ -22,7 +22,7 @@ const Main = styled.div`
     align-items: center;
 `;
 
-type Props = {
+interface Props {
 }
 
 const App = (props: Props) => {

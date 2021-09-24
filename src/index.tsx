@@ -1,22 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { SnackbarProvider } from 'notistack';
 
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
 import App from './App';
-import { store } from './store';
+import Provider from './Provider';
 import * as C from './lib/Const';
 
 
 ReactDOM.render(
     <React.StrictMode>
-        <Provider store={store}>
-            <SnackbarProvider autoHideDuration={C.DurationNotification}>
-                <App />
-            </SnackbarProvider>
+        <Provider>
+            <App />
         </Provider>
     </React.StrictMode>,
     document.getElementById('root')

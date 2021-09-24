@@ -1,6 +1,4 @@
-import { Provider } from "react-redux";
-import { SnackbarProvider } from 'notistack';
-import { store } from '../src/store';
+import Provider from '../src/Provider';
 
 export const parameters = {
     actions: { argTypesRegex: "^on[A-Z].*" },
@@ -14,10 +12,8 @@ export const parameters = {
 
 export const decorators = [
     (Story) => (
-        <Provider store={store}>
-            <SnackbarProvider>
-                <Story />
-            </SnackbarProvider>
+        <Provider>
+            <Story />
         </Provider>
     ),
 ]
