@@ -100,6 +100,12 @@ export const getScenarioText = (scenario: Scenario) :string => {
     }).join("\r\n\r\n");
 }
 
+export const getTextLength = (paragraph: Paragraph[]) :number => {
+    return paragraph.reduce((sum:number, p: Paragraph) => {
+        return sum + p.text.length
+    }, 0);
+}
+
 export const getCheckedTodoNum = (paragraph: Paragraph[]) :number => {
     const toodoReducer = (sum: number, t: Todo) => {
         return sum + (t.checked ? 1 : 0);

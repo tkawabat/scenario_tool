@@ -30,6 +30,35 @@ test('changeMemo 正常系', () => {
     expect(actual).toEqual(expected)
 })
 
+test('getTextLength 正常系 空', () => {
+    const input: S.Paragraph[] = [];
+    const actual = S.getTextLength(input);
+
+    const expected = 0;
+    expect(actual).toEqual(expected)
+})
+
+test('getTextLength 正常系 0', () => {
+    const p1: S.Paragraph = JSON.parse(JSON.stringify(S.initialParagraph));
+    const p2: S.Paragraph = JSON.parse(JSON.stringify(S.initialParagraph));
+    const input = [p1, p2];
+    const actual = S.getTextLength(input);
+
+    const expected = 0;
+    expect(actual).toEqual(expected)
+})
+
+test('getTextLength 正常系 データあり', () => {
+    const p1: S.Paragraph = JSON.parse(JSON.stringify(S.initialParagraph));
+    const p2: S.Paragraph = JSON.parse(JSON.stringify(S.initialParagraph));
+    p2.text = "aa0123あいうえお";
+    const input = [p1, p2];
+    const actual = S.getTextLength(input);
+
+    const expected = 11;
+    expect(actual).toEqual(expected)
+})
+
 test('getCheckedTodoNum 正常系 空', () => {
     const input: S.Paragraph[] = [];
     const actual = S.getCheckedTodoNum(input);
