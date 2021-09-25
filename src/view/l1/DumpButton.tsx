@@ -5,7 +5,7 @@ import { IconButton, Tooltip, Menu, MenuItem } from '@mui/material/';
 import { GetApp } from '@mui/icons-material/';
 
 import { RootState } from '../../store/rootReducer';
-import { getText, getTitle } from '../../store/ScenarioSlice';
+import { getScenarioText, getTitle } from '../../store/ScenarioSlice';
 
 import FileUtil from '../../lib/FileUtil';
 
@@ -36,7 +36,7 @@ const App = (props: Props) => {
     };
     const saveScenario = () => {
         const fileName = getTitle(scenario) + '.txt';
-        FileUtil.download(fileName, getText(scenario));
+        FileUtil.download(fileName, getScenarioText(scenario));
         handleClose();
     };
 

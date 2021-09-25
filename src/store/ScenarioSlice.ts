@@ -89,7 +89,7 @@ export const getTitle = (scenario: Scenario) => {
     return scenario.title ? scenario.title : C.NOTITLE;
 }
 
-export const getText = (scenario: Scenario) :string => {
+export const getScenarioText = (scenario: Scenario) :string => {
     const title = scenario.title ?
         scenario.title + "\r\n\r\n" : '';
 
