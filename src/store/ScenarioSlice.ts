@@ -19,7 +19,7 @@ export interface Paragraph {
     todo: Todo[];
 }
 
-const initialParagraph: Paragraph = {
+export const initialParagraph: Paragraph = {
     subTitle: "",
     text: "",
     todo: [
@@ -34,6 +34,12 @@ export interface Scenario {
     title: string;
     paragraph: Paragraph[];
     old: Paragraph[];
+}
+
+export const initialState: Scenario = {
+    title: "",
+    paragraph: [JSON.parse(JSON.stringify(initialParagraph))],
+    old: [JSON.parse(JSON.stringify(initialParagraph))],
 }
 
 export interface LoadPayload {
@@ -94,10 +100,16 @@ export const getText = (scenario: Scenario) :string => {
     }).join("\r\n\r\n");
 }
 
-export const initialState: Scenario = {
-    title: "",
-    paragraph: [JSON.parse(JSON.stringify(initialParagraph))],
-    old: [JSON.parse(JSON.stringify(initialParagraph))],
+export const getCheckedTodoNum = (paragraph: Paragraph[]) :number => {
+    const toodoReducer = (sum: number, t: Todo) => {
+        return sum + (t.checked ? 1 : 0);
+    }
+
+    const paragraphReducer = (sum: number, p: Paragraph) => {
+        return sum + p.todo.reduce(toodoReducer, 0);
+    }
+
+    return paragraph.reduce(paragraphReducer, 0);
 }
 
 const slice = createSlice({

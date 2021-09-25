@@ -1,4 +1,4 @@
-import ScenarioSlice, { Scenario, ChangeMemoPayload, initialState } from '../ScenarioSlice';
+import ScenarioSlice, * as S from '../ScenarioSlice';
 
 
 const reducer = ScenarioSlice.reducer;
@@ -16,38 +16,46 @@ const actions = ScenarioSlice.actions;
 // })
 
 test('changeMemo 正常系', () => {
-    const previousState: Scenario = JSON.parse(JSON.stringify(initialState));
+    const previousState: S.Scenario = JSON.parse(JSON.stringify(S.initialState));
 
-    const payload: ChangeMemoPayload = {
+    const payload: S.ChangeMemoPayload = {
         id: 0,
         memo: 'hoge'
     }
     const actual = reducer(previousState, actions.changeMemo(payload));
 
-    const expectState = JSON.parse(JSON.stringify(initialState));
-    expectState.paragraph[0].memo = 'hoge';
+    const expected = JSON.parse(JSON.stringify(S.initialState));
+    expected.paragraph[0].memo = 'hoge';
 
-    expect(actual).toEqual(expectState)
+    expect(actual).toEqual(expected)
 })
 
-// test('should handle a todo being added to an existing list', () => {
-//   const previousState = [
-//     {
-//       text: 'Run the tests',
-//       completed: true,
-//       id: 0
-//     }
-//   ]
-//   expect(reducer(previousState, todoAdded('Use Redux'))).toEqual([
-//     {
-//       text: 'Run the tests',
-//       completed: true,
-//       id: 0
-//     },
-//     {
-//       text: 'Use Redux',
-//       completed: false,
-//       id: 1
-//     }
-//   ])
-// })
+test('getCheckedTodoNum 正常系 空', () => {
+    const input: S.Paragraph[] = [];
+    const actual = S.getCheckedTodoNum(input);
+
+    const expected = 0;
+    expect(actual).toEqual(expected)
+})
+
+test('getCheckedTodoNum 正常系 0', () => {
+    const p1: S.Paragraph = JSON.parse(JSON.stringify(S.initialParagraph));
+    const p2: S.Paragraph = JSON.parse(JSON.stringify(S.initialParagraph));
+    const input = [p1, p2];
+    const actual = S.getCheckedTodoNum(input);
+
+    const expected = 0;
+    expect(actual).toEqual(expected)
+})
+
+test('getCheckedTodoNum 正常系 2', () => {
+    const p1: S.Paragraph = JSON.parse(JSON.stringify(S.initialParagraph));
+    const p2: S.Paragraph = JSON.parse(JSON.stringify(S.initialParagraph));
+    p1.todo[0].checked = true;
+    p2.todo[1].checked = true;
+    const input = [p1, p2];
+    const actual = S.getCheckedTodoNum(input);
+
+    const expected = 2;
+    expect(actual).toEqual(expected)
+})
