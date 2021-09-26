@@ -3,9 +3,67 @@ import sinon from 'sinon';
 import ScenarioUtil from '../ScenarioUtil';
 import Scenario, { createScenario } from '../../store/model/Scenario';
 import Paragraph, { createParagraph } from '../../store/model/Paragraph';
+import { createTodo } from '../../store/model/Todo';
 
 
 let stubs :sinon.SinonStub[] = [];
+
+
+describe('isParagraphEmpty', () => {
+
+    test('正常系 true', () => {
+        const input: Paragraph = createParagraph();
+        // TODOを足しても、checkしても空判定
+        input.todo.push(createTodo());
+        input.todo[1].checked = true;
+
+        const actual = ScenarioUtil.isParagraphEmpty(input);
+
+        const expected = true;
+        expect(actual).toEqual(expected);
+    });
+
+    test('正常系 false text', () => {
+        const input: Paragraph = createParagraph();
+        input.text = 'a';
+
+        const actual = ScenarioUtil.isParagraphEmpty(input);
+
+        const expected = false;
+        expect(actual).toEqual(expected);
+    });
+
+    test('正常系 false title', () => {
+        const input: Paragraph = createParagraph();
+        input.subTitle = 'a';
+
+        const actual = ScenarioUtil.isParagraphEmpty(input);
+
+        const expected = false;
+        expect(actual).toEqual(expected);
+    });
+
+    test('正常系 false memo', () => {
+        const input: Paragraph = createParagraph();
+        input.memo = 'a';
+
+        const actual = ScenarioUtil.isParagraphEmpty(input);
+
+        const expected = false;
+        expect(actual).toEqual(expected);
+    });
+
+    test('正常系 false todo', () => {
+        const input: Paragraph = createParagraph();
+        input.todo[1].text = 'a';
+
+        const actual = ScenarioUtil.isParagraphEmpty(input);
+
+        const expected = false;
+        expect(actual).toEqual(expected);
+    });
+
+});
 
 describe('getTextLength', () => {
 
@@ -16,7 +74,7 @@ describe('getTextLength', () => {
 
         const expected = 0;
         expect(actual).toEqual(expected);
-    })
+    });
 
     test('正常系 0', () => {
         const input: Paragraph[] = [

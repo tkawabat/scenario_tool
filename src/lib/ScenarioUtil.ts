@@ -7,6 +7,19 @@ import Todo from "../store/model/Todo";
 
 class ScenarioUtil {
 
+    isParagraphEmpty(paragraph: Paragraph): boolean {
+        if (paragraph.subTitle.length > 0) return false;
+        if (paragraph.text.length > 0) return false;
+        if (paragraph.memo.length > 0) return false;
+        if (paragraph.todo.some((p) => { // todoは文字を書いているかどうかだけ見る
+            return p.text.length > 0;
+        })) {
+            return false;
+        }
+
+        return true;
+    }
+
     getTextLength(paragraphList: Paragraph[]): number {
         return paragraphList.reduce((sum: number, p: Paragraph) => {
             return sum + p.text.length
