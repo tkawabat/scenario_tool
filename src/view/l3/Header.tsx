@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import * as C from '../../lib/Const';
+
 import JsonImportButton from '../l1/JsonImportButton';
 import DumpButton from '../l1/DumpButton';
 import ScenarioTitle from '../l1/ScenarioTitle';
@@ -51,7 +53,7 @@ const App = (props: Props) => {
     return (
         <Root className="header">
             <Left>
-                <ToolTitle>HAKOGAKI</ToolTitle>
+                <ToolTitle>{C.APP_NAME}</ToolTitle>
             </Left>
             <Center>
                 <ScenarioTitle />

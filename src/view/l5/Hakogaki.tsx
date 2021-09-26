@@ -73,7 +73,7 @@ const App = (props: Props) => {
     return (
         <HelmetProvider>
             <Helmet>
-                <title>HAKOGAKI</title>
+                <title>{C.APP_NAME}</title>
             </Helmet>
             <Main className="App">
                 <Header />

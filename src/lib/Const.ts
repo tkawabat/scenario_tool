@@ -11,6 +11,7 @@ export enum NotificationType {
     ERROR = 'error',
 }
 
-export const NOTITLE = 'タイトル未定';
+export const APP_NAME = 'HAKOGAKI (β)';
+export const NOTITLE = 'タイトル未定'; // ファイル名で使用
 
 export const CurrentScenarioFormatVersion = 1;
