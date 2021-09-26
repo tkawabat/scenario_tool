@@ -5,11 +5,10 @@ import { ExpandMore } from '@mui/icons-material/';
 
 import Paragraph from '../../store/model/Paragraph';
 
-import ParagraphTitle from '../l1/ParagraphTitle';
 import ScenarioArea from '../l1/ScenarioArea';
 import ScenarioAreaCount from '../l1/ScenarioAreaCount';
 import MemoArea from '../l1/MemoArea';
-import ParagraphTool from '../l2/ParagraphTool';
+import ParagraphHeader from '../l2/ParagraphHeader';
 import TodoArea from '../l3/TodoArea';
 
 
@@ -22,9 +21,6 @@ const Root = styled(Accordion)`
 `;
 const Header = styled(AccordionSummary)`
     width: 97%;
-`;
-const Title = styled(ParagraphTitle)`
-    width: 70%;
 `;
 
 const Detail = styled(AccordionDetails)`
@@ -56,7 +52,7 @@ const App = (props: Props) => {
             <Header
                 expandIcon={<ExpandMore />}
             >
-                <Title id={props.id} />
+                <ParagraphHeader paragraphId={props.id} />
             </Header>
             <Detail>
                 <Main>
@@ -66,7 +62,6 @@ const App = (props: Props) => {
                 <Sub>
                     <TodoArea paragraphId={props.id} />
                     <MemoArea id={props.id} />
-                    <ParagraphTool id={props.id} />
                 </Sub>
             </Detail>
         </Root>
