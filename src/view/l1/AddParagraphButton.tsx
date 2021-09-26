@@ -19,7 +19,7 @@ const App = (props: Props) => {
     const dispatch = useDispatch();
 
     return (
-        <Main onClick={() => dispatch(ScenarioSlice.actions.add())}>
+        <Main onClick={() => dispatch(ScenarioSlice.actions.addParagraph())}>
             <Add />
         </Main>
     );

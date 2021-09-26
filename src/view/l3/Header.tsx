@@ -6,6 +6,7 @@ import * as C from '../../lib/Const';
 import Center from '../l1/Center';
 import Left from '../l1/Left';
 import Right from '../l1/Right';
+import DeleteScenarioButton from '../l1/DeleteScenarioButton';
 import JsonImportButton from '../l1/JsonImportButton';
 import DumpButton from '../l1/DumpButton';
 import ScenarioTitle from '../l1/ScenarioTitle';
@@ -39,6 +40,7 @@ const App = (props: Props) => {
                 <ScenarioTitle />
             </Center>
             <Right>
+                <DeleteScenarioButton />
                 <JsonImportButton />
                 <DumpButton /> 
             </Right>

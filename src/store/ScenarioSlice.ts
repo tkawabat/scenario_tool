@@ -11,7 +11,7 @@ export interface LoadPayload {
     scenario: Scenario;
 }
 
-export interface DeletePayload {
+export interface DeleteParagraphPayload {
     paragraphId: number;
 }
 
@@ -70,11 +70,17 @@ const slice = createSlice({
             state.paragraphList = scenario.paragraphList;
             state.old = scenario.paragraphList; // 読み込み時点のデータをoldにセット
         }
-        , add: (state: Scenario) => {
+        , deleteScenario: (state: Scenario) => {
+            const scenario = createScenario();
+            state.title = scenario.title;
+            state.paragraphList = scenario.paragraphList;
+            state.old = scenario.paragraphList;
+        }
+        , addParagraph: (state: Scenario) => {
             state.paragraphList.push(createParagraph());
         }
         
-        , delete: (state: Scenario, action: PayloadAction<DeletePayload>) => {
+        , deleteParagraph: (state: Scenario, action: PayloadAction<DeleteParagraphPayload>) => {
             state.paragraphList.splice(action.payload.paragraphId, 1);
         }
 
