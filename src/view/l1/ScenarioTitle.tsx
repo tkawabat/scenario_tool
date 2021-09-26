@@ -20,8 +20,9 @@ const App = (props: Props) => {
 
     return (
         <Area
-            className="scenarioTitle"
-            placeholder="作品タイトルを入力"
+            variant='standard'
+            className='scenarioTitle'
+            placeholder='作品タイトルを入力'
             onChange={(e) => {
                 dispatch(ScenarioSlice.actions.changeTitle({
                     title: e.target.value
