@@ -7,7 +7,7 @@ import * as C from './lib/Const';
 
 
 interface Props {
-    children: React.ReactElement;
+    children?: React.ReactNode;
 }
 
 const App = (props: Props) => {
