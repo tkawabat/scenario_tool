@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { createParagraph } from './model/Paragraph';
+
+import * as C from '../lib/Const';
 
 import Scenario, { createScenario } from './model/Scenario';
+import { createParagraph } from './model/Paragraph';
 import { createTodo } from './model/Todo';
 
 
@@ -58,8 +60,15 @@ const slice = createSlice({
     name: "scenario",
     initialState,
     reducers: {
-        load: (state: Scenario, action: PayloadAction<LoadPayload>) => {
-            state = action.payload.scenario;
+        load: (state, action: PayloadAction<LoadPayload>) => {
+            const scenario = action.payload.scenario;
+            if (scenario.formatVersion < C.CurrentScenarioFormatVersion) {
+                // TODO
+                window.alert('プロジェクトファイルのバージョンが古く読み込めません。');
+            }
+            state.title = scenario.title;
+            state.paragraphList = scenario.paragraphList;
+            state.old = scenario.paragraphList; // 読み込み時点のデータをoldにセット
         }
         , add: (state: Scenario) => {
             state.paragraphList.push(createParagraph());

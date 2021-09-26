@@ -12,3 +12,5 @@ export enum NotificationType {
 }
 
 export const NOTITLE = 'タイトル未定';
+
+export const CurrentScenarioFormatVersion = 1;
