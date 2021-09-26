@@ -192,8 +192,8 @@ describe('getProgress', () => {
         const actual = ScenarioUtil.getProgress(input);
 
         const expected: string[] = [
-            '開始時点から、1文字書きました。',
-            '開始時点から、2個のTodoを完了させました。',
+            '【進捗】1文字書きました。',
+            '【進捗】2個のTodoを完了させました。',
         ];
         expect(actual).toEqual(expected)
     })
