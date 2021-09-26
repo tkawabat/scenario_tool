@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useSnackbar } from 'notistack';
 
 import { IconButton, Tooltip } from '@mui/material/';
-import { Publish } from '@mui/icons-material/';
+import { UploadFile } from '@mui/icons-material/';
 
 import ScenarioSlice, { LoadPayload, } from '../../store/ScenarioSlice';
 import Scenario from '../../store/model/Scenario';
@@ -46,13 +46,13 @@ const App = (props: Props) => {
 
     return (
         <Tooltip title="プロジェクトを読込" arrow>
-        <IconButton 
-            component="label"
-        >
-            <Publish />
-            <input type="file" hidden accept=".json" onChange={load} />
-         </IconButton>
-         </Tooltip>
+            <IconButton
+                component="label"
+            >
+                <UploadFile />
+                <input type="file" hidden accept=".json" onChange={load} />
+            </IconButton>
+        </Tooltip>
     );
 };
 

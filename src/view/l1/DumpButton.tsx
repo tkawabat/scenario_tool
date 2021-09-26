@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useSnackbar } from 'notistack';
 
 import { IconButton, Tooltip, Menu, MenuItem } from '@mui/material/';
-import { GetApp } from '@mui/icons-material/';
+import { Save } from '@mui/icons-material/';
 
 import { RootState } from '../../store/rootReducer';
 import Scenario from '../../store/model/Scenario';
@@ -15,7 +15,9 @@ import ScenarioUtil from '../../lib/ScenarioUtil';
 
 
 const Root = styled.div`
-        
+    display: flex;
+    align-content: center;
+    justify-content: center;
 `;
 
 type Props = {
@@ -59,7 +61,7 @@ const App = (props: Props) => {
                     aria-expanded={Boolean(anchorEl) ? 'true' : undefined}
                     onClick={handleClick}
                 >
-                    <GetApp />
+                    <Save />
                 </IconButton>
             </Tooltip>
             <Menu
