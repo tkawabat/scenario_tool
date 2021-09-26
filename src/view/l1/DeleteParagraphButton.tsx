@@ -29,7 +29,7 @@ const App = (props: Props) => {
             paragraphId: props.id
         }
         if (ScenarioUtil.isParagraphEmpty(paragraph)
-            || confirm('章を削除します。よろしいですか？')) {
+            || confirm('段落を削除します。よろしいですか？')) {
             dispatch(ScenarioSlice.actions.deleteParagraph(payload));
         }
 

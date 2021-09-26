@@ -29,7 +29,7 @@ const App = (props: Props) => {
         <Area
             variant='standard'
             className='scenarioTitle'
-            placeholder='作品タイトルを入力'
+            placeholder='作品タイトル'
             onChange={onChange}
             value={title}
             {...props}

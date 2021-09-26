@@ -34,7 +34,7 @@ const App = (props: Props) => {
     return (
         <Area
             variant='standard'
-            placeholder='章タイトルを入力'
+            placeholder='段落のタイトル'
             onChange={onChange}
             onClick={onClick}
             value={subTitle}

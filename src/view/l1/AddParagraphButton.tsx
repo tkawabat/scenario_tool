@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
-import { IconButton, } from '@mui/material/';
+import { IconButton, Tooltip, } from '@mui/material/';
 import { Add } from '@mui/icons-material/';
 
 import ScenarioSlice from '../../store/ScenarioSlice';
@@ -19,9 +19,11 @@ const App = (props: Props) => {
     const dispatch = useDispatch();
 
     return (
-        <Main onClick={() => dispatch(ScenarioSlice.actions.addParagraph())}>
-            <Add />
-        </Main>
+        <Tooltip title="段落を追加" arrow>
+            <Main onClick={() => dispatch(ScenarioSlice.actions.addParagraph())}>
+                <Add />
+            </Main>
+        </Tooltip>
     );
 };
 
