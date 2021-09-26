@@ -14,7 +14,8 @@ const Area = styled(TextField)`
 `;
 
 const App = (props: Props) => {
-    const title = useSelector((state: RootState) => state.scenario.title);
+    const title = useSelector((state: RootState) =>
+        state.scenario.title);
     const dispatch = useDispatch();
 
     return (

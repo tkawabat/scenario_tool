@@ -5,7 +5,8 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useSnackbar } from 'notistack';
 
 import { RootState } from '../../store/rootReducer';
-import ScenarioSlice, { LoadPayload, Scenario } from '../../store/ScenarioSlice';
+import ScenarioSlice, { LoadPayload } from '../../store/ScenarioSlice';
+import Scenario from '../../store/model/Scenario';
 
 import * as C from '../../lib/Const';
 import TimerUtil from '../../lib/TimerUtil';
@@ -29,7 +30,7 @@ const App = (props: Props) => {
     const { enqueueSnackbar, } = useSnackbar();
     const dispatch = useDispatch();
     const scenario = useSelector((state: RootState) => state.scenario);
-    const paragraphList = scenario.paragraph.map((e, i) => {
+    const paragraphList = scenario.paragraphList.map((e, i) => {
         return (<Paragraph id={i} paragraph={e} key={i} />);
     });
 

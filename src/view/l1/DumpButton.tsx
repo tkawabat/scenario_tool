@@ -5,9 +5,10 @@ import { IconButton, Tooltip, Menu, MenuItem } from '@mui/material/';
 import { GetApp } from '@mui/icons-material/';
 
 import { RootState } from '../../store/rootReducer';
-import { getScenarioText, getTitle } from '../../store/ScenarioSlice';
+import Scenario from '../../store/model/Scenario';
 
 import FileUtil from '../../lib/FileUtil';
+import ScenarioUtil from '../../lib/ScenarioUtil';
 
 
 const Root = styled.div`
@@ -18,7 +19,8 @@ type Props = {
 }
 
 const App = (props: Props) => {
-    const scenario = useSelector((state: RootState) => state.scenario);
+    const scenario: Scenario = useSelector((state: RootState) => 
+        state.scenario);
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -30,13 +32,13 @@ const App = (props: Props) => {
         setAnchorEl(null);
     };
     const saveProject = () => {
-        const fileName = getTitle(scenario) + '.json';
+        const fileName = ScenarioUtil.getTitle(scenario) + '.json';
         FileUtil.download(fileName, JSON.stringify(scenario));
         handleClose();
     };
     const saveScenario = () => {
-        const fileName = getTitle(scenario) + '.txt';
-        FileUtil.download(fileName, getScenarioText(scenario));
+        const fileName = ScenarioUtil.getTitle(scenario) + '.txt';
+        FileUtil.download(fileName, ScenarioUtil.getScenarioText(scenario));
         handleClose();
     };
 

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material/';
 import { ExpandMore } from '@mui/icons-material/';
 
-import { Paragraph } from '../../store/ScenarioSlice';
+import Paragraph from '../../store/model/Paragraph';
 
 import ParagraphTitle from '../l1/ParagraphTitle';
 import ScenarioArea from '../l1/ScenarioArea';

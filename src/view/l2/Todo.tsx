@@ -5,7 +5,7 @@ import { Tooltip, IconButton, TextField, Checkbox } from '@mui/material/';
 import { Delete } from '@mui/icons-material/';
 
 import { RootState } from '../../store/rootReducer';
-import ScenarioSlice, { changeTodoTextPayload, deleteTodoPayload, toggleTodoPayload } from '../../store/ScenarioSlice';
+import ScenarioSlice, { ChangeTodoTextPayload, DeleteTodoPayload, ToggleTodoPayload } from '../../store/ScenarioSlice';
 
 
 const Main = styled.div`
@@ -18,11 +18,12 @@ export interface TodoProps {
 }
 
 const App = (props: TodoProps) => {
-    const todo = useSelector((state: RootState) => state.scenario.paragraph[props.paragraphId].todo[props.todoId]);
+    const todo = useSelector((state: RootState) =>
+        state.scenario.paragraphList[props.paragraphId].todo[props.todoId]);
     const dispatch = useDispatch();
 
     const toggle = ()=> {
-        const payload: toggleTodoPayload = {
+        const payload: ToggleTodoPayload = {
             paragraphId: props.paragraphId,
             todoId: props.todoId,
         }
@@ -30,7 +31,7 @@ const App = (props: TodoProps) => {
     }
 
     const changeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        const payload: changeTodoTextPayload = {
+        const payload: ChangeTodoTextPayload = {
             paragraphId: props.paragraphId,
             todoId: props.todoId,
             text: e.target.value,
@@ -39,7 +40,7 @@ const App = (props: TodoProps) => {
     }
 
     const deleteTodo = ()=> {
-        const payload: deleteTodoPayload = {
+        const payload: DeleteTodoPayload = {
             paragraphId: props.paragraphId,
             todoId: props.todoId,
         }

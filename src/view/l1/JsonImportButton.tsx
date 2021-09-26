@@ -1,12 +1,12 @@
-
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
 import { IconButton, Tooltip } from '@mui/material/';
 import { Publish } from '@mui/icons-material/';
 
-import { RootState } from '../../store/rootReducer';
-import ScenarioSlice, { LoadPayload, Scenario } from '../../store/ScenarioSlice';
+
+import ScenarioSlice, { LoadPayload, } from '../../store/ScenarioSlice';
+import Scenario from '../../store/model/Scenario';
 
 
 const Main = styled(IconButton)`
@@ -17,7 +17,6 @@ type Props = {
 }
 
 const App = (props: Props) => {
-    const paragraph = useSelector((state: RootState) => state.scenario.paragraph);
     const dispatch = useDispatch();
 
     const load = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +29,7 @@ const App = (props: Props) => {
             const payload: LoadPayload = {
                 scenario: scenario
             };
-            dispatch(ScenarioSlice.actions.load(payload))
+            dispatch(ScenarioSlice.actions.load(payload));
         } catch {
             window.alert('プロジェクトファイルの読み込みに失敗しました。形式が間違っています。');
         }

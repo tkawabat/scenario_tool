@@ -1,163 +1,113 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import * as C from '../lib/Const';
+import { createParagraph } from './model/Paragraph';
 
+import Scenario, { createScenario } from './model/Scenario';
+import { createTodo } from './model/Todo';
 
-export interface Todo {
-    text: string;
-    checked: boolean;
-}
-
-const initialTodo: Todo = {
-    text: "",
-    checked: false
-}
-
-export interface Paragraph {
-    subTitle: string;
-    text: string;
-    memo: string;
-    todo: Todo[];
-}
-
-export const initialParagraph: Paragraph = {
-    subTitle: "",
-    text: "",
-    todo: [
-        JSON.parse(JSON.stringify(initialTodo)),
-        JSON.parse(JSON.stringify(initialTodo)),
-        JSON.parse(JSON.stringify(initialTodo)),
-    ],
-    memo: "",
-}
-
-export interface Scenario {
-    title: string;
-    paragraph: Paragraph[];
-    old: Paragraph[];
-}
-
-export const initialState: Scenario = {
-    title: "",
-    paragraph: [JSON.parse(JSON.stringify(initialParagraph))],
-    old: [JSON.parse(JSON.stringify(initialParagraph))],
-}
 
 export interface LoadPayload {
     scenario: Scenario;
 }
 
-export interface changeTitlePayload {
+export interface DeletePayload {
+    paragraphId: number;
+}
+
+export interface ChangeTitlePayload {
     title: string;
 }
 
-export interface changeSubTitlePayload {
-    id: number;
+export interface ChangeSubTitlePayload {
+    paragraphId: number;
     subTitle: string;
 }
 
-export interface changeTextPayload {
-    id: number;
+export interface ChangeTextPayload {
+    paragraphId: number;
     text: string;
 }
 
-export interface addTodoPayload {
+export interface AddTodoPayload {
     paragraphId: number;
 }
 
-export interface deleteTodoPayload {
+export interface DeleteTodoPayload {
     paragraphId: number;
     todoId: number;
 }
 
-export interface changeTodoTextPayload {
+export interface ChangeTodoTextPayload {
     paragraphId: number;
     todoId: number;
     text: string;
 }
 
-export interface toggleTodoPayload {
+export interface ToggleTodoPayload {
     paragraphId: number;
     todoId: number;
 }
 
 export interface ChangeMemoPayload {
-    id: number;
+    paragraphId: number;
     memo: string;
 }
 
-export const getTitle = (scenario: Scenario) => {
-    return scenario.title ? scenario.title : C.NOTITLE;
-}
-
-export const getScenarioText = (scenario: Scenario) :string => {
-    const title = scenario.title ?
-        scenario.title + "\r\n\r\n" : '';
-
-    return title + scenario.paragraph.map((p) => {
-        const title = p.subTitle ?
-            p.subTitle + "\r\n\r\n" : '';
-        return title + p.text + "\r\n\r\n";
-    }).join("\r\n\r\n");
-}
-
-export const getTextLength = (paragraph: Paragraph[]) :number => {
-    return paragraph.reduce((sum:number, p: Paragraph) => {
-        return sum + p.text.length
-    }, 0);
-}
-
-export const getCheckedTodoNum = (paragraph: Paragraph[]) :number => {
-    const toodoReducer = (sum: number, t: Todo) => {
-        return sum + (t.checked ? 1 : 0);
-    }
-
-    const paragraphReducer = (sum: number, p: Paragraph) => {
-        return sum + p.todo.reduce(toodoReducer, 0);
-    }
-
-    return paragraph.reduce(paragraphReducer, 0);
-}
+const initialState: Scenario = createScenario();
 
 const slice = createSlice({
     name: "scenario",
     initialState,
     reducers: {
-        load: (state, action: PayloadAction<LoadPayload>) => {
-            state.title = action.payload.scenario.title;
-            state.paragraph = action.payload.scenario.paragraph;
-            state.old = action.payload.scenario.paragraph;
-        },
-        add: (state) => { state.paragraph.push(initialParagraph); },
-        delete: (state, action: PayloadAction<number>) => {
-            state.paragraph.splice(action.payload, 1);
-            return state;
-        },
-        changeTitle: (state, action: PayloadAction<changeTitlePayload>) => {
+        load: (state: Scenario, action: PayloadAction<LoadPayload>) => {
+            state = action.payload.scenario;
+        }
+        , add: (state: Scenario) => {
+            state.paragraphList.push(createParagraph());
+        }
+        
+        , delete: (state: Scenario, action: PayloadAction<DeletePayload>) => {
+            state.paragraphList.splice(action.payload.paragraphId, 1);
+        }
+
+        , changeTitle: (state, action: PayloadAction<ChangeTitlePayload>) => {
             state.title = action.payload.title;
-        },
-        changeSubTitle: (state, action: PayloadAction<changeSubTitlePayload>) => {
-            state.paragraph[action.payload.id].subTitle = action.payload.subTitle;
-        },
-        changeText: (state, action: PayloadAction<changeTextPayload>) => {
-            state.paragraph[action.payload.id].text = action.payload.text;
-        },
-        addTodo: (state, action: PayloadAction<addTodoPayload>) => {
-            state.paragraph[action.payload.paragraphId].todo.push(JSON.parse(JSON.stringify(initialTodo)));
-        },
-        deleteTodo: (state, action: PayloadAction<deleteTodoPayload>) => {
-            state.paragraph[action.payload.paragraphId].todo.splice(action.payload.todoId, 1);
-        },
-        changeTodoText: (state, action: PayloadAction<changeTodoTextPayload>) => {
-            const payload = action.payload;
-            state.paragraph[payload.paragraphId].todo[payload.todoId].text = payload.text;
-        },
-        toggleTodo: (state, action: PayloadAction<toggleTodoPayload>) => {
-            const payload = action.payload;
-            state.paragraph[payload.paragraphId].todo[payload.todoId].checked =
-                !state.paragraph[payload.paragraphId].todo[payload.todoId].checked;
-        },
-        changeMemo: (state, action: PayloadAction<ChangeMemoPayload>) => {
-            state.paragraph[action.payload.id].memo = action.payload.memo;
+        }
+
+        , changeSubTitle: (state, action: PayloadAction<ChangeSubTitlePayload>) => {
+            state.paragraphList[action.payload.paragraphId].subTitle
+                = action.payload.subTitle;
+        }
+
+        , changeText: (state, action: PayloadAction<ChangeTextPayload>) => {
+            state.paragraphList[action.payload.paragraphId].text
+                = action.payload.text;
+        }
+
+        , addTodo: (state, action: PayloadAction<AddTodoPayload>) => {
+            state.paragraphList[action.payload.paragraphId]
+                .todo.push(createTodo());
+        }
+
+        , deleteTodo: (state, action: PayloadAction<DeleteTodoPayload>) => {
+            state.paragraphList[action.payload.paragraphId]
+                .todo.splice(action.payload.todoId, 1);
+        }
+
+        , changeTodoText: (state, action: PayloadAction<ChangeTodoTextPayload>) => {
+            state.paragraphList[action.payload.paragraphId]
+                .todo[action.payload.todoId].text = action.payload.text;
+        }
+        
+        , toggleTodo: (state, action: PayloadAction<ToggleTodoPayload>) => {
+            const checked = state.paragraphList[action.payload.paragraphId]
+                .todo[action.payload.todoId].checked;
+            state.paragraphList[action.payload.paragraphId]
+                .todo[action.payload.todoId].checked = !checked;
+        }
+        
+        ,changeMemo: (state, action: PayloadAction<ChangeMemoPayload>) => {
+            state.paragraphList[action.payload.paragraphId].memo
+                = action.payload.memo;
         },
     }
 });

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { TextField } from '@mui/material/';
 
 import { RootState } from '../../store/rootReducer';
-import ScenarioSlice from '../../store/ScenarioSlice';
+import ScenarioSlice, { ChangeSubTitlePayload } from '../../store/ScenarioSlice';
 
 
 type Props = {
@@ -15,18 +15,22 @@ const Area = styled(TextField)`
 `;
 
 const App = (props: Props) => {
-    const subTitle = useSelector((state: RootState) => state.scenario.paragraph[props.id].subTitle);
+    const subTitle = useSelector((state: RootState) =>
+        state.scenario.paragraphList[props.id].subTitle);
     const dispatch = useDispatch();
+
+    const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        const payload: ChangeSubTitlePayload = {
+            paragraphId: props.id,
+            subTitle: e.target.value
+        }
+        dispatch(ScenarioSlice.actions.changeSubTitle(payload));
+    }
 
     return (
         <Area
             placeholder="章タイトルを入力"
-            onChange={(e) => {
-                dispatch(ScenarioSlice.actions.changeSubTitle({
-                    id: props.id,
-                    subTitle: e.target.value
-                }));
-            }}
+            onChange={onChange}
             value={subTitle}
         />
     );

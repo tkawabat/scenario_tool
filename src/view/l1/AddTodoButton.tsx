@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { IconButton } from '@mui/material/';
 import { Add } from '@mui/icons-material/';
 
-import ScenarioSlice, { addTodoPayload } from '../../store/ScenarioSlice';
+import ScenarioSlice, { AddTodoPayload } from '../../store/ScenarioSlice';
 
 
 const Main = styled(IconButton)`
@@ -19,7 +19,7 @@ const App = (props: Props) => {
     const dispatch = useDispatch();
 
     const add = () => {
-        const payload: addTodoPayload = {
+        const payload: AddTodoPayload = {
             paragraphId: props.paragraphId,
         }
         dispatch(ScenarioSlice.actions.addTodo(payload));

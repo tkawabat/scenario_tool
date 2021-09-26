@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { IconButton, } from '@mui/material/';
 import { Add } from '@mui/icons-material/';
 
-
 import ScenarioSlice from '../../store/ScenarioSlice';
 
 

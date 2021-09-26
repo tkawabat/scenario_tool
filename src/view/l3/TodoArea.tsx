@@ -18,7 +18,7 @@ type Props = {
 
 const App = (props: Props) => {
     const todo = useSelector((state: RootState) => {
-        const todo = state.scenario.paragraph[props.paragraphId].todo;
+        const todo = state.scenario.paragraphList[props.paragraphId].todo;
         return todo.map((e, i) => {
             return (<Todo paragraphId={props.paragraphId} todoId={i} key={i} />);
         });
