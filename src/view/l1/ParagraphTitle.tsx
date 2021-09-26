@@ -27,11 +27,16 @@ const App = (props: Props) => {
         dispatch(ScenarioSlice.actions.changeSubTitle(payload));
     }
 
+    const onClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        e.stopPropagation(); // アコーディオンの開閉をしないようにする。
+    }
+
     return (
         <Area
             variant='standard'
             placeholder='章タイトルを入力'
             onChange={onChange}
+            onClick={onClick}
             value={subTitle}
         />
     );

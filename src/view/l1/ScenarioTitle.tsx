@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { TextField } from '@mui/material/';
 
 import { RootState } from '../../store/rootReducer';
-import ScenarioSlice from '../../store/ScenarioSlice';
+import ScenarioSlice, { ChangeTitlePayload } from '../../store/ScenarioSlice';
 
 
 type Props = {
@@ -18,16 +18,19 @@ const App = (props: Props) => {
         state.scenario.title);
     const dispatch = useDispatch();
 
+    const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        const payload: ChangeTitlePayload = {
+            title: e.target.value
+        }
+        dispatch(ScenarioSlice.actions.changeTitle(payload));
+    }
+
     return (
         <Area
             variant='standard'
             className='scenarioTitle'
             placeholder='作品タイトルを入力'
-            onChange={(e) => {
-                dispatch(ScenarioSlice.actions.changeTitle({
-                    title: e.target.value
-                }));
-            }}
+            onChange={onChange}
             value={title}
             {...props}
         />
