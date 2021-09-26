@@ -50,12 +50,12 @@ class ScenarioUtil {
     
         if (previousTextLength < nowTextLength) {
             const diff = nowTextLength - previousTextLength;
-            ret.push('開始時点から、' + diff + '文字書きました。');
+            ret.push('【進捗】' + diff + '文字書きました。');
         }
     
         if (previousCheckedTodoNum < nowCheckedTodoNum) {
             const diff = nowCheckedTodoNum - previousCheckedTodoNum;
-            ret.push('開始時点から、' + diff + '個のTodoを完了させました。');
+            ret.push('【進捗】' + diff + '個のTodoを完了させました。');
         }
     
         return ret;

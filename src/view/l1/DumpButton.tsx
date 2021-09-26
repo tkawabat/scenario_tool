@@ -1,12 +1,15 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
+import { useSnackbar } from 'notistack';
+
 import { IconButton, Tooltip, Menu, MenuItem } from '@mui/material/';
 import { GetApp } from '@mui/icons-material/';
 
 import { RootState } from '../../store/rootReducer';
 import Scenario from '../../store/model/Scenario';
 
+import * as C from '../../lib/Const';
 import FileUtil from '../../lib/FileUtil';
 import ScenarioUtil from '../../lib/ScenarioUtil';
 
@@ -19,6 +22,7 @@ type Props = {
 }
 
 const App = (props: Props) => {
+    const { enqueueSnackbar, } = useSnackbar();
     const scenario: Scenario = useSelector((state: RootState) => 
         state.scenario);
 
@@ -35,6 +39,10 @@ const App = (props: Props) => {
         const fileName = ScenarioUtil.getTitle(scenario) + '.json';
         FileUtil.download(fileName, JSON.stringify(scenario));
         handleClose();
+
+        ScenarioUtil.getProgress(scenario).forEach((message: string) => {
+            enqueueSnackbar(message, { variant: C.NotificationType.SUCCESS });
+        });
     };
     const saveScenario = () => {
         const fileName = ScenarioUtil.getTitle(scenario) + '.txt';
