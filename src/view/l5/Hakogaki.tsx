@@ -31,7 +31,6 @@ interface Props {
 }
 
 const App = (props: Props) => {
-    console.log('Hakogaki');
     const { enqueueSnackbar, } = useSnackbar();
     const dispatch = useDispatch();
     const scenario = useSelector((state: RootState) => state.scenario);

@@ -51,7 +51,6 @@ const MemoTodoArea = React.memo(TodoArea);
 const MemoMemoArea = React.memo(MemoArea);
 
 const App = (props: Props) => {
-    console.log('paragraph ' + props.paragraphId);
     
     return (
         <Root className="paragraph">

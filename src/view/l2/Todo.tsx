@@ -25,7 +25,6 @@ export interface TodoProps {
 }
 
 const App = (props: TodoProps) => {
-    console.log('TodoModel ' + props.paragraphId + ' ' + props.todoId);
     const dispatch = useDispatch();
 
     const toggle = ()=> {
