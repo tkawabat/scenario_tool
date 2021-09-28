@@ -8,7 +8,7 @@ import Hakogaki from './view/l5/Hakogaki';
 const App = () => {
 
     return (
-        <HashRouter>
+        <HashRouter basename={process.env.PUBLIC_URL}>
             <Switch>
                 <Route path="/hakogaki" component={Hakogaki} />
             </Switch>

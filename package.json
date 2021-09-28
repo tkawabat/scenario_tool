@@ -2,7 +2,7 @@
   "name": "scenario_tool",
   "version": "0.1.0",
   "private": true,
-  "homepage": "./",
+  "homepage": "https://tkawabat.github.io/scenario_tool",
   "dependencies": {
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
@@ -32,6 +32,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "postbuild": "cp build/index.html build/404.html",
     "test": "jest",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
