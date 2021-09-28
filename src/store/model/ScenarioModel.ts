@@ -1,6 +1,6 @@
 import * as C from '../../lib/Const';
 
-import Paragraph, { createParagraph } from './Paragraph';
+import ParagraphModel, { createParagraph } from './ParagraphModel';
 
 
 // Scenarioのインターフェースを変えるときは
@@ -9,8 +9,8 @@ import Paragraph, { createParagraph } from './Paragraph';
 export default interface Scenario {
     formatVersion: number;
     title: string;
-    paragraphList: Paragraph[];
-    old: Paragraph[];
+    paragraphList: ParagraphModel[];
+    old: ParagraphModel[];
 }
 
 export const createScenario = () :Scenario => {

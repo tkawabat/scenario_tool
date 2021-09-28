@@ -1,7 +1,7 @@
 import sinon from 'sinon';
 
 import ScenarioSlice, { ChangeMemoPayload } from '../ScenarioSlice';
-import Scenario, { createScenario } from '../model/Scenario';
+import ScenarioModel, { createScenario } from '../model/ScenarioModel';
 
 const reducer = ScenarioSlice.reducer;
 const actions = ScenarioSlice.actions;
@@ -18,7 +18,7 @@ const actions = ScenarioSlice.actions;
 // })
 
 test('changeMemo 正常系', () => {
-    const previousState: Scenario = createScenario();
+    const previousState: ScenarioModel = createScenario();
 
     const payload: ChangeMemoPayload = {
         paragraphId: 0,
@@ -26,7 +26,7 @@ test('changeMemo 正常系', () => {
     }
     const actual = reducer(previousState, actions.changeMemo(payload));
 
-    const expected: Scenario = createScenario();
+    const expected: ScenarioModel = createScenario();
     expected.paragraphList[0].memo = 'hoge';
 
     expect(actual).toEqual(expected)

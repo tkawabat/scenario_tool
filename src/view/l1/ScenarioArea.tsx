@@ -1,13 +1,13 @@
 import React from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, } from "react-redux";
 import styled from 'styled-components';
 
-import { RootState } from '../../store/rootReducer';
 import ScenarioSlice, { ChangeTextPayload } from '../../store/ScenarioSlice';
 
 
 type Props = {
-    id: number;
+    paragraphId: number;
+    text: string;
 }
 
 const Area = styled.textarea`
@@ -15,13 +15,11 @@ const Area = styled.textarea`
 `;
 
 const App = (props: Props) => {
-    const text = useSelector((state: RootState) =>
-        state.scenario.paragraphList[props.id].text);
     const dispatch = useDispatch();
 
     const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const payload: ChangeTextPayload = {
-            paragraphId: props.id,
+            paragraphId: props.paragraphId,
             text: e.target.value
         }
         dispatch(ScenarioSlice.actions.changeText(payload));
@@ -31,7 +29,7 @@ const App = (props: Props) => {
         <Area
             placeholder="本文を入力"
             onChange={onChange}
-            value={text}
+            value={props.text}
         />
     );
 };

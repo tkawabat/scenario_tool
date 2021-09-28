@@ -1,5 +1,7 @@
 import React from 'react';
 
+import TodoModel, { createTodo } from '../../store/model/TodoModel';
+
 import TodoArea from './TodoArea';
 
 export default {
@@ -8,5 +10,9 @@ export default {
 };
 
 export const show = () => {
-    return (<TodoArea paragraphId={0} />);
+    const todoList: TodoModel[] = [
+        createTodo(),
+        createTodo(),
+    ];
+    return (<TodoArea paragraphId={0} todoList={todoList} />);
 }

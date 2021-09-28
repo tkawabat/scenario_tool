@@ -6,7 +6,7 @@ import { useSnackbar } from 'notistack';
 
 import { RootState } from '../../store/rootReducer';
 import ScenarioSlice, { LoadPayload } from '../../store/ScenarioSlice';
-import Scenario from '../../store/model/Scenario';
+import Scenario from '../../store/model/ScenarioModel';
 
 import * as C from '../../lib/Const';
 import TimerUtil from '../../lib/TimerUtil';
@@ -23,15 +23,20 @@ const Main = styled.div`
     align-items: center;
 `;
 
+const MemoHeader = React.memo(Header);
+const MemoParagraph = React.memo(Paragraph);
+const MemoAddParagraphButton = React.memo(AddParagraphButton);
+
 interface Props {
 }
 
 const App = (props: Props) => {
+    console.log('Hakogaki');
     const { enqueueSnackbar, } = useSnackbar();
     const dispatch = useDispatch();
     const scenario = useSelector((state: RootState) => state.scenario);
     const paragraphList = scenario.paragraphList.map((e, i) => {
-        return (<Paragraph id={i} paragraph={e} key={i} />);
+        return (<MemoParagraph paragraphId={i} paragraph={e} key={i} />);
     });
 
     const loadStorage = () => {
@@ -76,9 +81,9 @@ const App = (props: Props) => {
                 <title>{C.APP_NAME}</title>
             </Helmet>
             <Main className="App">
-                <Header />
+                <MemoHeader title={scenario.title} />
                 {paragraphList}
-                <AddParagraphButton />
+                <MemoAddParagraphButton />
             </Main>
         </HelmetProvider>
     );

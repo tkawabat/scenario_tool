@@ -7,7 +7,7 @@ import { IconButton, Tooltip } from '@mui/material/';
 import { UploadFile } from '@mui/icons-material/';
 
 import ScenarioSlice, { LoadPayload, } from '../../store/ScenarioSlice';
-import Scenario from '../../store/model/Scenario';
+import Scenario from '../../store/model/ScenarioModel';
 
 import * as C from '../../lib/Const';
 

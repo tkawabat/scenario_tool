@@ -1,12 +1,10 @@
 import React from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styled from 'styled-components';
 import { IconButton, Tooltip } from '@mui/material/';
 import { Delete } from '@mui/icons-material/';
 
-import { RootState } from '../../store/rootReducer';
 import ScenarioSlice from '../../store/ScenarioSlice';
-import Paragraph from '../../store/model/Paragraph';
 
 
 const Main = styled(IconButton)`

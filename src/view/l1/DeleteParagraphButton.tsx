@@ -1,12 +1,11 @@
 import React from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, } from "react-redux";
 import styled from 'styled-components';
 import { IconButton, Tooltip } from '@mui/material/';
 import { Delete } from '@mui/icons-material/';
 
-import { RootState } from '../../store/rootReducer';
 import ScenarioSlice, { DeleteParagraphPayload, } from '../../store/ScenarioSlice';
-import Paragraph from '../../store/model/Paragraph';
+import ParagraphModel from '../../store/model/ParagraphModel';
 
 import ScenarioUtil from '../../lib/ScenarioUtil';
 
@@ -16,19 +15,18 @@ const Main = styled(IconButton)`
 `;
 
 type Props = {
-    id: number
+    paragraphId: number;
+    paragraph: ParagraphModel;
 }
 
 const App = (props: Props) => {
     const dispatch = useDispatch();
-    const paragraph: Paragraph = useSelector((state: RootState) => 
-        state.scenario.paragraphList[props.id]);
 
     const onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         const payload: DeleteParagraphPayload = {
-            paragraphId: props.id
+            paragraphId: props.paragraphId
         }
-        if (ScenarioUtil.isParagraphEmpty(paragraph)
+        if (ScenarioUtil.isParagraphEmpty(props.paragraph)
             || confirm('段落を削除します。よろしいですか？')) {
             dispatch(ScenarioSlice.actions.deleteParagraph(payload));
         }

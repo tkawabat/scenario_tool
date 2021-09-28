@@ -15,6 +15,7 @@ type Props = {
 }
 
 const App = (props: Props) => {
+    console.log('Memo ' + props.id);
     const memo = useSelector((state: RootState) => 
         state.scenario.paragraphList[props.id].memo);
     const dispatch = useDispatch();

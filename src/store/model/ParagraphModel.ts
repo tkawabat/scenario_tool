@@ -1,14 +1,14 @@
-import Todo, { createTodo } from './Todo';
+import TodoModel, { createTodo } from './TodoModel';
 
 
-export default interface Paragraph {
+export default interface ParagraphModel {
     subTitle: string;
     text: string;
     memo: string;
-    todo: Todo[];
+    todo: TodoModel[];
 }
 
-export const createParagraph = () :Paragraph => {
+export const createParagraph = () :ParagraphModel => {
     return {
         subTitle: '',
         text: '',

@@ -2,13 +2,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import * as C from '../lib/Const';
 
-import Scenario, { createScenario } from './model/Scenario';
-import { createParagraph } from './model/Paragraph';
-import { createTodo } from './model/Todo';
+import ScenarioModel, { createScenario } from './model/ScenarioModel';
+import { createParagraph } from './model/ParagraphModel';
+import { createTodo } from './model/TodoModel';
 
 
 export interface LoadPayload {
-    scenario: Scenario;
+    scenario: ScenarioModel;
 }
 
 export interface DeleteParagraphPayload {
@@ -54,7 +54,7 @@ export interface ChangeMemoPayload {
     memo: string;
 }
 
-const initialState: Scenario = createScenario();
+const initialState: ScenarioModel = createScenario();
 
 const slice = createSlice({
     name: "scenario",
@@ -70,17 +70,17 @@ const slice = createSlice({
             state.paragraphList = scenario.paragraphList;
             state.old = scenario.paragraphList; // 読み込み時点のデータをoldにセット
         }
-        , deleteScenario: (state: Scenario) => {
+        , deleteScenario: (state: ScenarioModel) => {
             const scenario = createScenario();
             state.title = scenario.title;
             state.paragraphList = scenario.paragraphList;
             state.old = scenario.paragraphList;
         }
-        , addParagraph: (state: Scenario) => {
+        , addParagraph: (state: ScenarioModel) => {
             state.paragraphList.push(createParagraph());
         }
         
-        , deleteParagraph: (state: Scenario, action: PayloadAction<DeleteParagraphPayload>) => {
+        , deleteParagraph: (state: ScenarioModel, action: PayloadAction<DeleteParagraphPayload>) => {
             state.paragraphList.splice(action.payload.paragraphId, 1);
         }
 

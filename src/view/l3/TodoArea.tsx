@@ -1,8 +1,7 @@
 import React from 'react';
-import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
 
-import { RootState } from '../../store/rootReducer';
+import TodoModel from '../../store/model/TodoModel';
 
 import AddTodoButton from '../l1/AddTodoButton';
 import Todo from '../l2/Todo';
@@ -16,14 +15,12 @@ const Root = styled.div`
 
 type Props = {
     paragraphId: number;
+    todoList: TodoModel[];
 }
 
 const App = (props: Props) => {
-    const todo = useSelector((state: RootState) => {
-        const todo = state.scenario.paragraphList[props.paragraphId].todo;
-        return todo.map((e, i) => {
-            return (<Todo paragraphId={props.paragraphId} todoId={i} key={i} />);
-        });
+    const todo = props.todoList.map((e, i) => {
+        return (<Todo paragraphId={props.paragraphId} todoId={i} todo={e} key={i} />);
     });
     
     return (

@@ -7,7 +7,7 @@ import { IconButton, Tooltip, Menu, MenuItem } from '@mui/material/';
 import { Save } from '@mui/icons-material/';
 
 import { RootState } from '../../store/rootReducer';
-import Scenario from '../../store/model/Scenario';
+import ScenarioModel from '../../store/model/ScenarioModel';
 
 import * as C from '../../lib/Const';
 import FileUtil from '../../lib/FileUtil';
@@ -25,7 +25,7 @@ type Props = {
 
 const App = (props: Props) => {
     const { enqueueSnackbar, } = useSnackbar();
-    const scenario: Scenario = useSelector((state: RootState) => 
+    const scenario: ScenarioModel = useSelector((state: RootState) => 
         state.scenario);
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);

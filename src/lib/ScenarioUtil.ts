@@ -1,13 +1,13 @@
 import * as C from './Const';
 
-import Paragraph from "../store/model/Paragraph";
-import Scenario from "../store/model/Scenario";
-import Todo from "../store/model/Todo";
+import ParagraphModel from "../store/model/ParagraphModel";
+import ScenarioModel from "../store/model/ScenarioModel";
+import TodoModel from "../store/model/TodoModel";
 
 
 class ScenarioUtil {
 
-    isParagraphEmpty(paragraph: Paragraph): boolean {
+    isParagraphEmpty(paragraph: ParagraphModel): boolean {
         if (paragraph.subTitle.length > 0) return false;
         if (paragraph.text.length > 0) return false;
         if (paragraph.memo.length > 0) return false;
@@ -20,29 +20,29 @@ class ScenarioUtil {
         return true;
     }
 
-    getTextLength(paragraphList: Paragraph[]): number {
-        return paragraphList.reduce((sum: number, p: Paragraph) => {
+    getTextLength(paragraphList: ParagraphModel[]): number {
+        return paragraphList.reduce((sum: number, p: ParagraphModel) => {
             return sum + p.text.length
         }, 0);
     }
 
-    getCheckedTodoNum(paragraphList: Paragraph[]): number {
-        const toodoReducer = (sum: number, t: Todo) => {
+    getCheckedTodoNum(paragraphList: ParagraphModel[]): number {
+        const toodoReducer = (sum: number, t: TodoModel) => {
             return sum + (t.checked ? 1 : 0);
         }
 
-        const paragraphReducer = (sum: number, p: Paragraph) => {
+        const paragraphReducer = (sum: number, p: ParagraphModel) => {
             return sum + p.todo.reduce(toodoReducer, 0);
         }
 
         return paragraphList.reduce(paragraphReducer, 0);
     }
 
-    getTitle(scenario: Scenario) {
+    getTitle(scenario: ScenarioModel) {
         return scenario.title ? scenario.title : C.NOTITLE;
     }
 
-    getScenarioText(scenario: Scenario) :string {
+    getScenarioText(scenario: ScenarioModel) :string {
         const ret = scenario.title ?
         scenario.title + "\r\n\r\n" : '';
     
@@ -53,7 +53,7 @@ class ScenarioUtil {
         }).join("\r\n\r\n");
     }
 
-    getProgress(scenario: Scenario): string[] {
+    getProgress(scenario: ScenarioModel): string[] {
         const ret: string[] = [];
     
         const previousTextLength = this.getTextLength(scenario.old);

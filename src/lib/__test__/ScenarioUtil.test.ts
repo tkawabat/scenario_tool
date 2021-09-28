@@ -1,9 +1,9 @@
 import sinon from 'sinon';
 
 import ScenarioUtil from '../ScenarioUtil';
-import Scenario, { createScenario } from '../../store/model/Scenario';
-import Paragraph, { createParagraph } from '../../store/model/Paragraph';
-import { createTodo } from '../../store/model/Todo';
+import ScenarioModel, { createScenario } from '../../store/model/ScenarioModel';
+import ParagraphModel, { createParagraph } from '../../store/model/ParagraphModel';
+import { createTodo } from '../../store/model/TodoModel';
 
 
 let stubs :sinon.SinonStub[] = [];
@@ -12,7 +12,7 @@ let stubs :sinon.SinonStub[] = [];
 describe('isParagraphEmpty', () => {
 
     test('正常系 true', () => {
-        const input: Paragraph = createParagraph();
+        const input: ParagraphModel = createParagraph();
         // TODOを足しても、checkしても空判定
         input.todo.push(createTodo());
         input.todo[1].checked = true;
@@ -24,7 +24,7 @@ describe('isParagraphEmpty', () => {
     });
 
     test('正常系 false text', () => {
-        const input: Paragraph = createParagraph();
+        const input: ParagraphModel = createParagraph();
         input.text = 'a';
 
         const actual = ScenarioUtil.isParagraphEmpty(input);
@@ -34,7 +34,7 @@ describe('isParagraphEmpty', () => {
     });
 
     test('正常系 false title', () => {
-        const input: Paragraph = createParagraph();
+        const input: ParagraphModel = createParagraph();
         input.subTitle = 'a';
 
         const actual = ScenarioUtil.isParagraphEmpty(input);
@@ -44,7 +44,7 @@ describe('isParagraphEmpty', () => {
     });
 
     test('正常系 false memo', () => {
-        const input: Paragraph = createParagraph();
+        const input: ParagraphModel = createParagraph();
         input.memo = 'a';
 
         const actual = ScenarioUtil.isParagraphEmpty(input);
@@ -54,7 +54,7 @@ describe('isParagraphEmpty', () => {
     });
 
     test('正常系 false todo', () => {
-        const input: Paragraph = createParagraph();
+        const input: ParagraphModel = createParagraph();
         input.todo[1].text = 'a';
 
         const actual = ScenarioUtil.isParagraphEmpty(input);
@@ -68,7 +68,7 @@ describe('isParagraphEmpty', () => {
 describe('getTextLength', () => {
 
     test('正常系 空', () => {
-        const input: Paragraph[] = [];
+        const input: ParagraphModel[] = [];
 
         const actual = ScenarioUtil.getTextLength(input);
 
@@ -77,7 +77,7 @@ describe('getTextLength', () => {
     });
 
     test('正常系 0', () => {
-        const input: Paragraph[] = [
+        const input: ParagraphModel[] = [
             createParagraph(),
             createParagraph(),
         ];
@@ -89,7 +89,7 @@ describe('getTextLength', () => {
     })
 
     test('正常系 データあり', () => {
-        const input: Paragraph[] = [
+        const input: ParagraphModel[] = [
             createParagraph(),
             createParagraph(),
         ];
@@ -106,7 +106,7 @@ describe('getTextLength', () => {
 describe('getCheckedTodoNum', () => {
 
     test('正常系 空', () => {
-        const input: Paragraph[] = [];
+        const input: ParagraphModel[] = [];
 
         const actual = ScenarioUtil.getCheckedTodoNum(input);
 
@@ -115,7 +115,7 @@ describe('getCheckedTodoNum', () => {
     })
 
     test('正常系 0', () => {
-        const input: Paragraph[] = [
+        const input: ParagraphModel[] = [
             createParagraph(),
             createParagraph(),
         ];
@@ -127,7 +127,7 @@ describe('getCheckedTodoNum', () => {
     })
 
     test('正常系 2', () => {
-        const input: Paragraph[] = [
+        const input: ParagraphModel[] = [
             createParagraph(),
             createParagraph(),
         ];

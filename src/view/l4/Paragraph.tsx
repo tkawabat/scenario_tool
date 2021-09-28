@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material/';
 import { ExpandMore } from '@mui/icons-material/';
 
-import Paragraph from '../../store/model/Paragraph';
+import ParagraphModel from '../../store/model/ParagraphModel';
 
 import ScenarioArea from '../l1/ScenarioArea';
 import ScenarioAreaCount from '../l1/ScenarioAreaCount';
@@ -42,27 +42,41 @@ const Sub = styled.div`
 `;
 
 type Props = {
-    id: number;
-    paragraph: Paragraph;
+    paragraphId: number;
+    paragraph: ParagraphModel;
 }
 
+const MemoParagraphHeader = React.memo(ParagraphHeader);
+const MemoTodoArea = React.memo(TodoArea);
+const MemoMemoArea = React.memo(MemoArea);
+
 const App = (props: Props) => {
+    console.log('paragraph ' + props.paragraphId);
     
     return (
         <Root className="paragraph">
             <Header
                 expandIcon={<ExpandMore />}
             >
-                <ParagraphHeader paragraphId={props.id} />
+                <MemoParagraphHeader
+                    paragraphId={props.paragraphId}
+                    paragraph={props.paragraph}
+                />
             </Header>
             <Detail>
                 <Main>
-                    <ScenarioArea id={props.id} />
-                    <ScenarioAreaCount id={props.id} />
+                    <ScenarioArea
+                        paragraphId={props.paragraphId}
+                        text={props.paragraph.text}
+                    />
+                    <ScenarioAreaCount text={props.paragraph.text} />
                 </Main>
                 <Sub>
-                    <TodoArea paragraphId={props.id} />
-                    <MemoArea id={props.id} />
+                    <MemoTodoArea
+                        paragraphId={props.paragraphId}
+                        todoList={props.paragraph.todo}
+                    />
+                    <MemoMemoArea id={props.paragraphId} />
                 </Sub>
             </Detail>
         </Root>

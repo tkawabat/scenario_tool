@@ -1,6 +1,6 @@
-import React from 'react';
-import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
+
+import ParagraphModel from '../../store/model/ParagraphModel';
 
 import Center from '../l1/Center';
 import Left from '../l1/Left';
@@ -20,6 +20,7 @@ const Title = styled(ParagraphTitle)`
 
 type Props = {
     paragraphId: number;
+    paragraph: ParagraphModel;
 }
 
 const App = (props: Props) => {
@@ -27,15 +28,19 @@ const App = (props: Props) => {
     return (
         <Main>
             <Left>
-                <Title id={props.paragraphId} />
+                <Title
+                    paragraphId={props.paragraphId}
+                    subTitle={props.paragraph.subTitle}
+                />
             </Left>
             <Center>
             </Center>
             <Right>
-                <DeleteParagraphButton id={props.paragraphId} />
-            </Right>
-            
-            
+                <DeleteParagraphButton
+                    paragraphId={props.paragraphId}
+                    paragraph={props.paragraph}
+                />
+            </Right>            
         </Main>
     );
 };

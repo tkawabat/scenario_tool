@@ -28,6 +28,7 @@ const ToolTitle = styled.span`
 `
 
 type Props = {
+    title: string;
 }
 
 const App = (props: Props) => {
@@ -38,7 +39,7 @@ const App = (props: Props) => {
                 <ToolTitle>{C.APP_NAME}</ToolTitle>
             </Left>
             <Center>
-                <ScenarioTitle />
+                <ScenarioTitle title={props.title} />
             </Center>
             <Right>
                 <DeleteScenarioButton />

@@ -1,11 +1,11 @@
 import React from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styled from 'styled-components';
 import { Tooltip, IconButton, TextField, Checkbox } from '@mui/material/';
 import { Delete } from '@mui/icons-material/';
 
-import { RootState } from '../../store/rootReducer';
 import ScenarioSlice, { ChangeTodoTextPayload, DeleteTodoPayload, ToggleTodoPayload } from '../../store/ScenarioSlice';
+import TodoModel from '../../store/model/TodoModel';
 
 
 const Main = styled.div`
@@ -21,11 +21,11 @@ const TodoTextField = styled(TextField)`
 export interface TodoProps {
     paragraphId: number;
     todoId: number;
+    todo: TodoModel;
 }
 
 const App = (props: TodoProps) => {
-    const todo = useSelector((state: RootState) =>
-        state.scenario.paragraphList[props.paragraphId].todo[props.todoId]);
+    console.log('TodoModel ' + props.paragraphId + ' ' + props.todoId);
     const dispatch = useDispatch();
 
     const toggle = ()=> {
@@ -56,12 +56,12 @@ const App = (props: TodoProps) => {
     return (
         <Main>
             <Tooltip title="完了" arrow>
-                <Checkbox checked={todo.checked} onClick={toggle} />
+                <Checkbox checked={props.todo.checked} onClick={toggle} />
             </Tooltip>
             <TodoTextField
                 variant="standard"
-                placeholder={"Todo"}
-                value={todo.text}
+                placeholder={"TodoModel"}
+                value={props.todo.text}
                 onChange={changeText}
             />
             <Tooltip title="Todoを削除" arrow>

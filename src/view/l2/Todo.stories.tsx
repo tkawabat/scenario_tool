@@ -1,5 +1,6 @@
 import React from 'react';
 
+import TodoModel from '../../store/model/TodoModel';
 import Todo from './Todo';
 
 export default {
@@ -8,5 +9,10 @@ export default {
 };
 
 export const show = () => {
-    return (<Todo paragraphId={0} todoId={0} />);
+    const todo: TodoModel = {
+        checked: false,
+        text: 'hoge',
+    }
+
+    return (<Todo paragraphId={0} todoId={0} todo={todo} />);
 }
