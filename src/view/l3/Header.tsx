@@ -9,6 +9,7 @@ import Right from '../l1/Right';
 import DeleteScenarioButton from '../l1/DeleteScenarioButton';
 import JsonImportButton from '../l1/JsonImportButton';
 import DumpButton from '../l1/DumpButton';
+import HelpButton from '../l1/HelpButton';
 import ScenarioTitle from '../l1/ScenarioTitle';
 
 
@@ -43,6 +44,7 @@ const App = (props: Props) => {
                 <DeleteScenarioButton />
                 <JsonImportButton />
                 <DumpButton /> 
+                <HelpButton />
             </Right>
         </Root>
     );
