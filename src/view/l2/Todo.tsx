@@ -9,7 +9,13 @@ import ScenarioSlice, { ChangeTodoTextPayload, DeleteTodoPayload, ToggleTodoPayl
 
 
 const Main = styled.div`
-        
+    display: flex;
+    align-self: flex-start;
+    width: 100%;
+`;
+
+const TodoTextField = styled(TextField)`
+    width: 100%;
 `;
 
 export interface TodoProps {
@@ -52,7 +58,7 @@ const App = (props: TodoProps) => {
             <Tooltip title="完了" arrow>
                 <Checkbox checked={todo.checked} onClick={toggle} />
             </Tooltip>
-            <TextField
+            <TodoTextField
                 variant="standard"
                 placeholder={"Todo"}
                 value={todo.text}

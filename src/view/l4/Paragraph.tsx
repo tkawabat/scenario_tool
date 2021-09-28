@@ -21,6 +21,7 @@ const Root = styled(Accordion)`
 `;
 const Header = styled(AccordionSummary)`
     width: 97%;
+    
 `;
 
 const Detail = styled(AccordionDetails)`

@@ -9,6 +9,8 @@ import Todo from '../l2/Todo';
 
 
 const Root = styled.div`
+    display: flex;
+    flex-direction: column;
     align-items: center;
 `;
 

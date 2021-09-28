@@ -8,7 +8,9 @@ import ScenarioSlice, { AddTodoPayload } from '../../store/ScenarioSlice';
 
 
 const Main = styled(IconButton)`
-    
+    display: flex;
+    align-content: center;
+    justify-content: center;
 `;
 
 type Props = {

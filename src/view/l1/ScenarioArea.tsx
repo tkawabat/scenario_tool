@@ -11,7 +11,7 @@ type Props = {
 }
 
 const Area = styled.textarea`
-    height: 500px;
+    height: 400px;
 `;
 
 const App = (props: Props) => {
