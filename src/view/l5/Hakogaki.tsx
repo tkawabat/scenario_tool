@@ -11,6 +11,7 @@ import Scenario from '../../store/model/ScenarioModel';
 import * as C from '../../lib/Const';
 import TimerUtil from '../../lib/TimerUtil';
 import StorageUtil from '../../lib/StorageUtil';
+import GAUtil from '../../lib/GAUtil';
 
 import Paragraph from '../l4/Paragraph';
 import Header from '../l3/Header';
@@ -70,6 +71,8 @@ const App = (props: Props) => {
         TimerUtil.setInterval(C.TimerSaveProject, () => {
             StorageUtil.save(C.StorageKeyScenario, JSON.stringify(scenarioRef.current));
         }, C.IntervalSaveScenario);
+
+        GAUtil.pageview('hakogaki');
     }
 
     useEffect(init, []);
