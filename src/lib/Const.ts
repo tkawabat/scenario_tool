@@ -1,6 +1,7 @@
 export const TimerSaveProject = 'TimerSaveProject';
 
 export const StorageKeyScenario = 'StorageKeyScenario';
+export const StorageKeyAutoSaveCationModal = 'StorageKeyAutoSaveCationModal';
 
 export const IntervalSaveScenario = 2 * 1000;
 export const DurationNotification = 5 * 1000;

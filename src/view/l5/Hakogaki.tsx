@@ -16,6 +16,7 @@ import GAUtil from '../../lib/GAUtil';
 import Paragraph from '../l4/Paragraph';
 import Header from '../l3/Header';
 import AddParagraphButton from '../l1/AddParagraphButton';
+import AutoSaveCautionModal, { AutoSaveCautionModalHandler } from '../l2/AutoSaveCautionModal';
 
 
 const Main = styled.div`
@@ -38,6 +39,7 @@ const App = (props: Props) => {
     const paragraphList = scenario.paragraphList.map((e, i) => {
         return (<MemoParagraph paragraphId={i} paragraph={e} key={i} />);
     });
+    const autoSaveCationModalRef = React.useRef({} as AutoSaveCautionModalHandler);
 
     const loadStorage = () => {
         const json = StorageUtil.load(C.StorageKeyScenario);
@@ -51,6 +53,7 @@ const App = (props: Props) => {
 
                 // 通知
                 enqueueSnackbar('前回のデータを読み込みました。', { variant: C.NotificationType.SUCCESS });
+                autoSaveCationModalRef.current.open();
             } catch { // ERROR
                 StorageUtil.remove(C.StorageKeyScenario);
             }
@@ -87,6 +90,7 @@ const App = (props: Props) => {
                 {paragraphList}
                 <MemoAddParagraphButton />
             </Main>
+            <AutoSaveCautionModal ref={autoSaveCationModalRef} />
         </HelmetProvider>
     );
 }
