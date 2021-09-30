@@ -47,7 +47,7 @@ const App = React.forwardRef<AutoSaveCautionModalHandler>((props: Props, ref) =>
     const [open, setOpen] = React.useState(false);
 
     const neverOpen = () => {
-        // StorageUtil.save(C.StorageKeyAutoSaveCationModal, '1');
+        StorageUtil.save(C.StorageKeyAutoSaveCationModal, '1');
         setOpen(false);
     }
 
