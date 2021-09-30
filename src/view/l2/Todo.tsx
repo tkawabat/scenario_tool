@@ -59,7 +59,7 @@ const App = (props: TodoProps) => {
             </Tooltip>
             <TodoTextField
                 variant="standard"
-                placeholder={"TodoModel"}
+                placeholder={"Todo"}
                 value={props.todo.text}
                 onChange={changeText}
             />

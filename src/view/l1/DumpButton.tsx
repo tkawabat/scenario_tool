@@ -72,7 +72,7 @@ const App = (props: Props) => {
                 MenuListProps={{ 'aria-labelledby': 'basic-button', }}
             >
                 <MenuItem onClick={saveProject}>プロジェクトとして保存</MenuItem>
-                <MenuItem onClick={saveScenario}>台本として保存</MenuItem>
+                <MenuItem onClick={saveScenario}>作品として保存</MenuItem>
             </Menu>
         </Root>
     );
