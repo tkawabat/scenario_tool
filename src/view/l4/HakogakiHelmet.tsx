@@ -6,6 +6,8 @@ import * as C from '../../lib/Const';
 interface Props {
 }
 
+// Twitterが動的metaタグに対応していないので、呼ばないようにする。
+// public/index.html内に直接記載
 const App = (props: Props) => {
 
     return (

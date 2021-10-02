@@ -83,7 +83,7 @@ const App = (props: Props) => {
 
     return (
         <React.Fragment>
-            <HakogakiHelmet />
+            {/* <HakogakiHelmet /> */}
             <Main className="App">
                 <MemoHeader title={scenario.title} />
                 {paragraphList}
