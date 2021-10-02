@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/scenario_tool/static/css/main.2ae47eeb.chunk.css",
-    "main.js": "/scenario_tool/static/js/main.2c78320f.chunk.js",
-    "main.js.map": "/scenario_tool/static/js/main.2c78320f.chunk.js.map",
-    "runtime-main.js": "/scenario_tool/static/js/runtime-main.4559a304.js",
-    "runtime-main.js.map": "/scenario_tool/static/js/runtime-main.4559a304.js.map",
-    "static/js/2.036db6ab.chunk.js": "/scenario_tool/static/js/2.036db6ab.chunk.js",
-    "static/js/2.036db6ab.chunk.js.map": "/scenario_tool/static/js/2.036db6ab.chunk.js.map",
-    "index.html": "/scenario_tool/index.html",
-    "static/css/main.2ae47eeb.chunk.css.map": "/scenario_tool/static/css/main.2ae47eeb.chunk.css.map",
-    "static/js/2.036db6ab.chunk.js.LICENSE.txt": "/scenario_tool/static/js/2.036db6ab.chunk.js.LICENSE.txt"
+    "main.css": "https://tkawabat.github.io/static/css/main.2ae47eeb.chunk.css",
+    "main.js": "https://tkawabat.github.io/static/js/main.85984c9a.chunk.js",
+    "main.js.map": "https://tkawabat.github.io/static/js/main.85984c9a.chunk.js.map",
+    "runtime-main.js": "https://tkawabat.github.io/static/js/runtime-main.406eb656.js",
+    "runtime-main.js.map": "https://tkawabat.github.io/static/js/runtime-main.406eb656.js.map",
+    "static/js/2.1ea9209f.chunk.js": "https://tkawabat.github.io/static/js/2.1ea9209f.chunk.js",
+    "static/js/2.1ea9209f.chunk.js.map": "https://tkawabat.github.io/static/js/2.1ea9209f.chunk.js.map",
+    "index.html": "https://tkawabat.github.io/index.html",
+    "static/css/main.2ae47eeb.chunk.css.map": "https://tkawabat.github.io/static/css/main.2ae47eeb.chunk.css.map",
+    "static/js/2.1ea9209f.chunk.js.LICENSE.txt": "https://tkawabat.github.io/static/js/2.1ea9209f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.4559a304.js",
-    "static/js/2.036db6ab.chunk.js",
+    "static/js/runtime-main.406eb656.js",
+    "static/js/2.1ea9209f.chunk.js",
     "static/css/main.2ae47eeb.chunk.css",
-    "static/js/main.2c78320f.chunk.js"
+    "static/js/main.85984c9a.chunk.js"
   ]
 }
