@@ -26,3 +26,4 @@ export const AppDescription = 'HAKOGAKIは箱書きを支援するアプリで�
     + '進捗やTodoの管理機能も搭載。'
     ;
 export const AppUrl = 'https://tkawabat.github.io/scenario_tool/build/index.html#/hakogaki';
+export const AppImage = 'https://tkawabat.github.io/scenario_tool/hakogaki_ogimage.png';

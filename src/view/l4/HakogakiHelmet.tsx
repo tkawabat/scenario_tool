@@ -16,9 +16,11 @@ const App = (props: Props) => {
             <meta property="og:description" content={C.AppDescription} />
             <meta property="og:type" content="website" />
             <meta property="og:url" content={C.AppUrl} />
-            {/* <meta property="og:image" content="サムネイル画像の URL" /> */}
+            <meta property="og:image" content={C.AppImage} />
             <meta property="og:site_name" content={C.AppName} />
             <meta property="og:locale" content="ja_JP" />
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:site" content="@MatchingRandom" />
         </Helmet>
     );
 }
