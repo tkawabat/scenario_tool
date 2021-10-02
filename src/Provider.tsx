@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { SnackbarProvider } from 'notistack';
+import { HelmetProvider } from 'react-helmet-async';
 
 import { store } from './store';
 import * as C from './lib/Const';
@@ -15,7 +16,9 @@ const App = (props: Props) => {
     return (
         <Provider store={store}>
             <SnackbarProvider autoHideDuration={C.DurationNotification}>
-                {props.children}
+                <HelmetProvider>
+                    {props.children}
+                </HelmetProvider>
             </SnackbarProvider>
         </Provider>
     );

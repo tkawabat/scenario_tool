@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useSnackbar } from 'notistack';
 
 import { RootState } from '../../store/rootReducer';
@@ -13,10 +12,12 @@ import TimerUtil from '../../lib/TimerUtil';
 import StorageUtil from '../../lib/StorageUtil';
 import GAUtil from '../../lib/GAUtil';
 
+import HakogakiHelmet from '../l4/HakogakiHelmet';
 import Paragraph from '../l4/Paragraph';
 import Header from '../l3/Header';
 import AddParagraphButton from '../l1/AddParagraphButton';
 import AutoSaveCautionModal, { AutoSaveCautionModalHandler } from '../l2/AutoSaveCautionModal';
+
 
 
 const Main = styled.div`
@@ -81,17 +82,15 @@ const App = (props: Props) => {
     useEffect(init, []);
 
     return (
-        <HelmetProvider>
-            <Helmet>
-                <title>{C.APP_NAME}</title>
-            </Helmet>
+        <React.Fragment>
+            <HakogakiHelmet />
             <Main className="App">
                 <MemoHeader title={scenario.title} />
                 {paragraphList}
                 <MemoAddParagraphButton />
             </Main>
             <AutoSaveCautionModal ref={autoSaveCationModalRef} />
-        </HelmetProvider>
+        </React.Fragment>
     );
 }
 

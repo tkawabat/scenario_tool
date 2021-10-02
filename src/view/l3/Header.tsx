@@ -36,7 +36,7 @@ const App = (props: Props) => {
     return (
         <Root className="header">
             <Left>
-                <ToolTitle>{C.APP_NAME}</ToolTitle>
+                <ToolTitle>{C.AppNameShort}</ToolTitle>
             </Left>
             <Center>
                 <ScenarioTitle title={props.title} />

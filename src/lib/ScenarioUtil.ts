@@ -39,7 +39,7 @@ class ScenarioUtil {
     }
 
     getTitle(scenario: ScenarioModel) {
-        return scenario.title ? scenario.title : C.NOTITLE;
+        return scenario.title ? scenario.title : C.NoTitleFileName;
     }
 
     getScenarioText(scenario: ScenarioModel) :string {
