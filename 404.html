@@ -3,7 +3,17 @@
 <head>
     <meta charset="utf-8" />
     <script>
-        window.location.replace(window.location.href);
+    (function(){
+        const location = window.location
+        const SEGMENT_COUNT = 1;
+        const origin = location.origin;
+        const path = location.href.substr(origin.length + 1);  //=> repo-name/book/123
+        const segments = path.split('/');  //=> [repo-name, book, 123]
+        const repo = segments.slice(0, SEGMENT_COUNT).join('/');  //=> repo-name
+        const param = segments.slice(SEGMENT_COUNT).join('/');  //=> book/123
+        const url = origin + '/' + repo + '?p=' + encodeURIComponent(param);
+        location.replace(url);
+    })();
     </script>
 </head>
 
