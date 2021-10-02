@@ -10,13 +10,12 @@ const Main = styled.div`
 `;
 
 interface Props {
-    children?: React.ReactNode;
 }
 
-const App = (props: Props) => {
+const App: React.FC<Props> = ({ children }) => {
     return (
         <Main>
-            {props.children}
+            {children}
         </Main>
     );
 };

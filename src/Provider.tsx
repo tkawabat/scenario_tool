@@ -8,16 +8,15 @@ import * as C from './lib/Const';
 
 
 interface Props {
-    children?: React.ReactNode;
 }
 
-const App = (props: Props) => {
+const App: React.FC<Props> = ({ children }) => {
 
     return (
         <Provider store={store}>
             <SnackbarProvider autoHideDuration={C.DurationNotification}>
                 <HelmetProvider>
-                    {props.children}
+                    {children}
                 </HelmetProvider>
             </SnackbarProvider>
         </Provider>
